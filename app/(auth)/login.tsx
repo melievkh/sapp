@@ -32,7 +32,6 @@ const LoginScreen = () => {
   };
 
 
-
   return (
     <ThemedView style={styles.container}>
       <StatusBar barStyle="dark-content" />
