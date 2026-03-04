@@ -27,13 +27,14 @@ export default function TabLayout() {
         name="ranking/index"
         options={{
           title: 'Ranking',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+          tabBarIcon: ({ color }) => <IconSymbol size={28} name="star.fill" color={color} />,
         }}
       />
       <Tabs.Screen
-        name="all/index"
+        name="services/index"
         options={{
           title: 'Barchasi',
+          tabBarIcon: ({ color }) => <IconSymbol size={28} name="square.grid.2x2.fill" color={color} />,
         }}
       />
     </Tabs>

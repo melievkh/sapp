@@ -2,6 +2,7 @@ import { ThemedText } from '@/components/themed-text';
 import { useAppTheme } from '@/hooks/use-app-theme';
 import React, { useState } from 'react';
 import { TextInput, TouchableOpacity, View } from 'react-native';
+import { IconSymbol } from './ui/icon-symbol';
 
 interface InputFieldProps {
   placeholder: string;
@@ -58,7 +59,9 @@ const InputField: React.FC<InputFieldProps> = ({
 
       {secureTextEntry && (
         <TouchableOpacity onPress={() => setSecure(!secure)}>
-          <ThemedText style={style.toggle}>{secure ? 'show' : 'hide'}</ThemedText>
+          <ThemedText style={style.toggle}>{secure ?
+            <IconSymbol size={28} name="eye.fill" color={theme.icon} /> :
+            <IconSymbol size={28} name="eye.slash.fill" color={theme.icon} />}</ThemedText>
         </TouchableOpacity>
       )}
     </View>

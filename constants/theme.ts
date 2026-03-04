@@ -11,8 +11,11 @@ export const Colors: {
 } = {
   light: {
     text: '#11181C',
+    white: '#fff',
+    black: '#000',
     textSecondary: '#7A7A7A',
     background: '#fff',
+    backgroundSecondary: '#fbfbfb',
     border: '#dddddd',
     tint: tintColorLight,
     icon: '#687076',
@@ -21,8 +24,11 @@ export const Colors: {
   },
   dark: {
     text: '#ECEDEE',
+    white: '#fff',
+    black: '#000',
     textSecondary: '#7A7A7A',
     background: '#151718',
+    backgroundSecondary: '#101010',
     border: '#333333',
     tint: tintColorDark,
     icon: '#9BA1A6',

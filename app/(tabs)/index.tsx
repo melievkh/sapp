@@ -1,22 +1,31 @@
 import { ThemedText } from '@/components/themed-text';
-import { StyleSheet, View } from 'react-native';
+import { ThemedView } from '@/components/themed-view';
+import React from 'react';
+import { StyleSheet } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-
-export default function HomeScreen() {
+const HomeScreen = () => {
   return (
-    <View>
-      <ThemedText style={styles.titleContainer}>
-        Welcome to Edford
-      </ThemedText>
-    </View>
+    <SafeAreaView>
+      <ThemedView>
+        <ThemedText style={styles.name}>Meliev Xushnud</ThemedText>
+      </ThemedView>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-    padding: 56,
+  avatar: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+    marginBottom: 20,
+  },
+  name: {
+    fontSize: 24,
+    fontWeight: 'bold',
   },
 });
+
+
+export default HomeScreen;
