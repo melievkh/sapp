@@ -31,6 +31,5 @@ export const createStyles = (theme: ThemeColors) => StyleSheet.create({
     justifyContent: 'space-between',
     gap: 10,
     marginTop: 16,
-
   }
 });

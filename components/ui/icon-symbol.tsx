@@ -22,8 +22,10 @@ const MAPPING = {
   'square.grid.2x2.fill': 'grid-view',
   'eye.fill': 'visibility',
   'eye.slash.fill': 'visibility-off',
-  'star.fill': 'star',
   'rectangle.portrait.and.arrow.right': 'logout',
+  'checkmark.circle.fill': 'check-circle',
+  'bookmark.fill': 'badge',
+  'trophy.circle.fill': 'emoji-events',
 } as IconMapping;
 
 /**

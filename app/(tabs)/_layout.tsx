@@ -27,7 +27,7 @@ export default function TabLayout() {
         name="ranking/index"
         options={{
           title: 'Ranking',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="star.fill" color={color} />,
+          tabBarIcon: ({ color }) => <IconSymbol size={28} name="trophy.circle.fill" color={color} />,
         }}
       />
       <Tabs.Screen

@@ -1,6 +1,8 @@
+import InputField from '@/components/input';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { useAppTheme } from '@/hooks/use-app-theme';
+import { useRouter } from "expo-router";
 import React, { useState } from 'react';
 import {
   Alert,
@@ -12,11 +14,11 @@ import {
   View
 } from 'react-native';
 import { createStyles } from './auth.style';
-import InputField from '@/components/input';
 
 const LoginScreen = () => {
   const theme = useAppTheme();
   const styles = createStyles(theme);
+  const router = useRouter();
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -27,6 +29,7 @@ const LoginScreen = () => {
       return;
     }
     Alert.alert('Success', `Username: ${username}`);
+    router.push('/(tabs)');
   };
 
   return (
