@@ -2,16 +2,19 @@ import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 import { ThemeColors } from '@/types/theme';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { TouchableOpacity } from 'react-native';
+import { AuthContext } from '../auth-provider/AuthProvider';
 import CustomModal from '../modal/modal';
 
 const ServicesHeader = (props: { styles: any, colors: ThemeColors }) => {
   const [modalVisible, setModalVisible] = useState(false);
+  const { logout } = useContext(AuthContext);
+
 
   const handleLogout = () => {
     setModalVisible(false);
-    console.log("Logged out!");
+    logout()
   };
 
   return (

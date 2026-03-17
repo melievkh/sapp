@@ -1,10 +1,10 @@
 import ServicesHeader from '@/components/headers/services.header';
 import ServiceCard from '@/components/service-card/service-card';
 import { useAppTheme } from '@/hooks/use-app-theme';
+import { createStyles } from '@/styles/services.styles';
 import React from 'react';
 import { FlatList } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { createStyles } from './services.styles';
 
 type ServiceItem = {
   key: string;
@@ -23,9 +23,7 @@ const Services = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-
       <ServicesHeader styles={styles} colors={colors} />
-
       <FlatList
         data={SERVICES}
         numColumns={2}

@@ -2,6 +2,8 @@ import InputField from '@/components/input';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { useAppTheme } from '@/hooks/use-app-theme';
+import { useLogin } from '@/query/useLogin.query';
+import { createStyles } from '@/styles/auth.style';
 import { useRouter } from "expo-router";
 import React, { useState } from 'react';
 import {
@@ -13,23 +15,36 @@ import {
   TouchableOpacity,
   View
 } from 'react-native';
-import { createStyles } from './auth.style';
 
 const LoginScreen = () => {
   const theme = useAppTheme();
   const styles = createStyles(theme);
   const router = useRouter();
 
-  const [username, setUsername] = useState('');
+  const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
 
+  const { mutate, error } = useLogin();
+
   const handleLogin = () => {
-    if (!username || !password) {
+    if (!login || !password) {
       Alert.alert('Error', 'Please fill all fields');
       return;
     }
-    Alert.alert('Success', `Username: ${username}`);
-    router.push('/(tabs)');
+
+    mutate(
+      { login, password },
+      {
+        onSuccess: (res) => {
+          router.push('/(tabs)')
+        },
+        onError: (err: any) => {
+          Alert.alert(`${error?.response?.data.message}!`)
+        }
+      },
+
+    );
+
   };
 
   return (
@@ -53,9 +68,9 @@ const LoginScreen = () => {
             <ThemedText style={[styles.welcome]}>Welcome!</ThemedText>
 
             <InputField
-              placeholder="Enter username"
-              value={username}
-              onChangeText={setUsername}
+              placeholder="Enter login"
+              value={login}
+              onChangeText={setLogin}
               numericOnly
               maxLength={9}
               keyboardType="number-pad"
