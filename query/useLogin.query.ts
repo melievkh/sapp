@@ -1,5 +1,5 @@
+import { setToken } from "@/services/secure-store.service";
 import { useMutation } from "@tanstack/react-query";
-import * as SecureStore from "expo-secure-store";
 import { login } from "../services/auth.service";
 
 export const useLogin = () => {
@@ -7,7 +7,7 @@ export const useLogin = () => {
     mutationFn: login,
 
     onSuccess: async (data) => {
-      await SecureStore.setItemAsync("token", data.accessToken);
+      await setToken(data.accessToken)
     },
 
     onError: (error: any) => {

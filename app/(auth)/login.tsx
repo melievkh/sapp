@@ -35,16 +35,10 @@ const LoginScreen = () => {
     mutate(
       { login, password },
       {
-        onSuccess: (res) => {
-          router.push('/(tabs)')
-        },
-        onError: (err: any) => {
-          Alert.alert(`${error?.response?.data.message}!`)
-        }
+        onSuccess: () => router.push('/(tabs)'),
+        onError: () => Alert.alert(`${error?.response?.data.message}!`)
       },
-
     );
-
   };
 
   return (

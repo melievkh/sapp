@@ -1,6 +1,7 @@
 import ServicesHeader from '@/components/headers/services.header';
 import ServiceCard from '@/components/service-card/service-card';
 import { useAppTheme } from '@/hooks/use-app-theme';
+import { useGetUser } from '@/query/useGetUser.query';
 import { createStyles } from '@/styles/services.styles';
 import React from 'react';
 import { FlatList } from 'react-native';
@@ -20,6 +21,7 @@ const SERVICES: ServiceItem[] = [
 const Services = () => {
   const colors = useAppTheme();
   const styles = createStyles(colors);
+  const { data, isLoading, error } = useGetUser();
 
   return (
     <SafeAreaView style={styles.container}>
