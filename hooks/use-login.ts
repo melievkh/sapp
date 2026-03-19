@@ -7,7 +7,7 @@ export const useLogin = () => {
     mutationFn: login,
 
     onSuccess: async (data) => {
-      await SecureStore.setItemAsync("token", data.accessToken);
+      await SecureStore.setItemAsync("accessToken", data.accessToken);
     },
 
     onError: (error: any) => {

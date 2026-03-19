@@ -1,3 +1,4 @@
+
 import ServicesHeader from '@/components/headers/services.header';
 import { ThemedText } from '@/components/themed-text';
 import { useAppTheme } from '@/hooks/use-app-theme';
@@ -8,7 +9,7 @@ import React from 'react';
 import { ScrollView, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-export default function UserDashboardScreen() {
+const UserDashboardScreen = () => {
   const colors = useAppTheme();
   const styles = createStyles(colors);
   const router = useRouter();
@@ -27,8 +28,6 @@ export default function UserDashboardScreen() {
   const handleNavPress = (screen: any) => {
     router.push(screen);
   };
-
-  const handleLogout = () => { }
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: colors.backgroundSecondary }}>
@@ -65,3 +64,5 @@ export default function UserDashboardScreen() {
     </SafeAreaView>
   );
 }
+
+export default UserDashboardScreen

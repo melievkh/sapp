@@ -1,4 +1,5 @@
 import axios from "axios";
+import { router } from "expo-router";
 import * as SecureStore from "expo-secure-store";
 
 export const api = axios.create({
@@ -7,7 +8,7 @@ export const api = axios.create({
 
 api.interceptors.request.use(async (config) => {
   if (!config.url?.includes('/auth/login')) {
-    const token = await SecureStore.getItemAsync('token');
+    const token = await SecureStore.getItemAsync('accessToken');
 
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
@@ -20,6 +21,7 @@ api.interceptors.response.use(
   (response) => {
     return response;
   },
+
   async (error) => {
     console.error("API error:", error.response?.data);
 
@@ -31,6 +33,7 @@ api.interceptors.response.use(
 
     if (status === 401) {
       await SecureStore.deleteItemAsync("accessToken");
+      router.replace("/(auth)/login");
     }
 
     return Promise.reject(new Error(message));
