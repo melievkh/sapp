@@ -4,32 +4,57 @@ import { StyleSheet } from "react-native";
 export const createStyles = (theme: ThemeColors) => StyleSheet.create({
   container: {
     flex: 1,
-    height: '100%',
-    width: '100%',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-    backgroundColor: theme.backgroundSecondary,
+    padding: 20,
+    backgroundColor: theme.background
+  },
+  loading: {
+    flex: 1,
+    textAlign: 'center',
+    marginTop: 50
   },
   header: {
-    borderBottomWidth: 1,
-    borderBottomColor: theme.border,
-    width: '100%',
-    height: 60,
+    marginBottom: 20,
+    alignItems: 'center'
+  },
+  statsContainer: {
     flexDirection: 'row',
-    alignItems: 'center',
+    flexWrap: 'wrap',
     justifyContent: 'space-between',
-    backgroundColor: theme.tint,
-    paddingHorizontal: 16,
+    marginBottom: 20,
   },
-  headerText: {
-    fontSize: 20,
+  statItem: {
+    width: '48%',
+    backgroundColor: theme.background,
+    padding: 15,
+    borderRadius: 10,
+    marginBottom: 10,
+    shadowColor: theme.black,
+    shadowOpacity: 0.05,
+    shadowRadius: 5,
+    elevation: 2,
+  },
+  statTitle: {
+    fontSize: 14,
+  },
+  statValue: {
+    fontSize: 18,
     fontWeight: 'bold',
-    color: theme.white,
+    marginTop: 5,
   },
-  flatlistContainer: {
-    width: '100%',
-    justifyContent: 'space-between',
-    gap: 10,
-    marginTop: 16,
-  }
+  navContainer: {
+    marginTop: 10
+  },
+  navItem: {
+    padding: 15,
+    backgroundColor: theme.background,
+    marginBottom: 10,
+    borderRadius: 20,
+    shadowColor: theme.black,
+    shadowOpacity: 0.05,
+    shadowRadius: 5,
+    elevation: 2,
+  },
+  navText: {
+    fontSize: 16,
+  },
 });

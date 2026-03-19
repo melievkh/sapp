@@ -10,4 +10,5 @@ export type ThemeColors = {
   icon: string;
   tabIconDefault: string;
   tabIconSelected: string;
+  danger: string
 };

@@ -21,6 +21,7 @@ export const Colors: {
     icon: '#687076',
     tabIconDefault: '#687076',
     tabIconSelected: tintColorLight,
+    danger: '#rgb(255, 137, 137)'
   },
   dark: {
     text: '#ECEDEE',
@@ -34,6 +35,7 @@ export const Colors: {
     icon: '#9BA1A6',
     tabIconDefault: '#9BA1A6',
     tabIconSelected: tintColorDark,
+    danger: '#rgb(255, 137, 137)'
   },
 };
 
