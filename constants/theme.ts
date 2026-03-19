@@ -2,8 +2,8 @@ import { ThemeColors } from '@/types/theme';
 import { Platform } from 'react-native';
 
 
-const tintColorLight = '#ffb343';
-const tintColorDark = '#ffb343';
+const tintColorLight = '#ec7028';
+const tintColorDark = '#ec7028';
 
 export const Colors: {
   light: ThemeColors;
@@ -13,15 +13,13 @@ export const Colors: {
     text: '#11181C',
     white: '#fff',
     black: '#000',
-    textSecondary: '#7A7A7A',
+    textSecondary: '#5f5f5f',
     background: '#fff',
-    backgroundSecondary: '#fbfbfb',
-    border: '#dddddd',
+    backgroundSecondary: '#faf9fd',
+    border: '#c8c8c8',
     tint: tintColorLight,
-    icon: '#687076',
-    tabIconDefault: '#687076',
-    tabIconSelected: tintColorLight,
-    danger: '#rgb(255, 137, 137)'
+    danger: '#rgb(255, 137, 137)',
+    icon: '#5f5f5f'
   },
   dark: {
     text: '#ECEDEE',
@@ -29,13 +27,11 @@ export const Colors: {
     black: '#000',
     textSecondary: '#7A7A7A',
     background: '#151718',
-    backgroundSecondary: '#101010',
+    backgroundSecondary: '#101012',
     border: '#333333',
     tint: tintColorDark,
-    icon: '#9BA1A6',
-    tabIconDefault: '#9BA1A6',
-    tabIconSelected: tintColorDark,
-    danger: '#rgb(255, 137, 137)'
+    danger: '#rgb(255, 137, 137)',
+    icon: '#5f5f5f'
   },
 };
 

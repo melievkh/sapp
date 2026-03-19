@@ -1,4 +1,3 @@
-// components/CustomModal.tsx
 import { useAppTheme } from '@/hooks/use-app-theme';
 import React from 'react';
 import { Modal, TouchableOpacity, View } from 'react-native';

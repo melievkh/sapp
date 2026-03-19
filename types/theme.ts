@@ -7,8 +7,6 @@ export type ThemeColors = {
   backgroundSecondary: string;
   border: string;
   tint: string;
-  icon: string;
-  tabIconDefault: string;
-  tabIconSelected: string;
   danger: string
+  icon: string
 };

@@ -5,7 +5,7 @@ export const createStyles = (colors: ThemeColors) => StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
-    backgroundColor: colors.background
+    backgroundColor: colors.backgroundSecondary
   },
   center: {
     flex: 1,
@@ -13,17 +13,30 @@ export const createStyles = (colors: ThemeColors) => StyleSheet.create({
     alignItems: "center",
     backgroundColor: colors.background
   },
-  toggleWrapper: {
-    marginBottom: 20,
+  fixedToggleWrapper: {
+    position: "absolute",
+    top: 16,
+    left: 16,
+    right: 16,
+    zIndex: 10,
   },
-  toggle: {
+  stickyToggle: {
     flexDirection: "row",
-    borderRadius: 14,
+    borderRadius: 25,
+    marginHorizontal: 16,
+    marginVertical: 8,
     overflow: "hidden",
-    borderWidth: 1,
-    borderColor: colors.border,
+    padding: 4,
+    backgroundColor: colors.background
+  },
+  fixedToggle: {
+    flexDirection: "row",
+    borderRadius: 25,
+    overflow: "hidden",
+    padding: 4,
   },
   listContent: {
     paddingBottom: 20,
+    marginBottom: 20
   },
 });

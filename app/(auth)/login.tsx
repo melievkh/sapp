@@ -17,8 +17,8 @@ import {
 } from 'react-native';
 
 const LoginScreen = () => {
-  const theme = useAppTheme();
-  const styles = createStyles(theme);
+  const colors = useAppTheme();
+  const styles = createStyles(colors);
   const router = useRouter();
 
   const [login, setLogin] = useState('');
@@ -92,7 +92,7 @@ const LoginScreen = () => {
             </ThemedText>
 
             <TouchableOpacity style={styles.button} onPress={handleLogin}>
-              <ThemedText>Get Started</ThemedText>
+              <ThemedText style={{ color: colors.white }}>Get Started</ThemedText>
             </TouchableOpacity>
 
             <TouchableOpacity>

@@ -2,7 +2,7 @@
 import ServicesHeader from '@/components/headers/services.header';
 import { ThemedText } from '@/components/themed-text';
 import { useAppTheme } from '@/hooks/use-app-theme';
-import { useGetUser } from '@/query/useGetUser.query';
+import { useGetMe } from '@/query/useGetMe.query';
 import { createStyles } from '@/styles/services.styles';
 import { useRouter } from 'expo-router';
 import React from 'react';
@@ -13,7 +13,7 @@ const UserDashboardScreen = () => {
   const colors = useAppTheme();
   const styles = createStyles(colors);
   const router = useRouter();
-  const { data: user, isLoading, error } = useGetUser();
+  const { data: user, isLoading, error } = useGetMe();
 
   if (isLoading) return <ThemedText style={styles.loading}>Loading...</ThemedText>;
   if (error || !user) return <ThemedText style={styles.loading}>Failed to load user data</ThemedText>;

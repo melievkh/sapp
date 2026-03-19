@@ -4,16 +4,20 @@ import { StyleSheet } from 'react-native';
 const createStyles = (colors: ThemeColors) => StyleSheet.create({
   modalBackground: {
     flex: 1,
-    backgroundColor: colors.backgroundSecondary + 'AA', // Semi-transparent background
+    backgroundColor: colors.backgroundSecondary + 'AA',
     justifyContent: 'center',
     alignItems: 'center',
   },
   modalContainer: {
     width: 300,
     backgroundColor: colors.background,
-    borderRadius: 20,
+    borderRadius: 30,
     elevation: 5,
-    padding: 12,
+    padding: 18,
+    shadowColor: colors.black,
+    shadowOffset: { width: 0, height: 5 },
+    shadowOpacity: 0.1,
+    shadowRadius: 5,
   },
   title: {
     fontSize: 18,

@@ -5,23 +5,29 @@ import { useAppTheme } from '@/hooks/use-app-theme';
 import { User } from '@/types/api.type';
 import { useRouter } from 'expo-router';
 import * as SecureStore from 'expo-secure-store';
-import React, { useState } from 'react';
-import { StyleSheet, TouchableOpacity, View } from 'react-native';
-import CustomModal from '../modal/modal';
+import React from 'react';
+import { Alert, StyleSheet, TouchableOpacity, View } from 'react-native';
 
 const ServicesHeader = (data: { user: User }) => {
   const colors = useAppTheme();
   const router = useRouter()
-  const [modalVisible, setModalVisible] = useState(false);
 
   const handleLogout = async () => {
-    await SecureStore.deleteItemAsync('accessToken');
-
-    setModalVisible(false);
-
-    router.replace('/(auth)/login');
+    await SecureStore.deleteItemAsync('accessToken'); // delete token
+    router.replace('/(auth)/login'); // navigate to login
   };
 
+  const confirmLogout = () => {
+    Alert.alert(
+      "Log Out",
+      "Are you sure you want to log out?",
+      [
+        { text: "No", style: "cancel" },
+        { text: "Yes", onPress: handleLogout }
+      ],
+      { cancelable: true }
+    );
+  };
   return (
     <ThemedView style={styles.header}>
       <View>
@@ -29,19 +35,9 @@ const ServicesHeader = (data: { user: User }) => {
         <ThemedText style={styles.role}>{data.user.role}</ThemedText>
       </View>
 
-      <TouchableOpacity onPress={() => setModalVisible(true)}>
+      <TouchableOpacity onPress={confirmLogout}>
         <IconSymbol size={28} name="rectangle.portrait.and.arrow.right" color={colors.icon} />
       </TouchableOpacity>
-
-      <CustomModal
-        visible={modalVisible}
-        title="Log Out?"
-        message="Are you sure to log out?"
-        onCancel={() => setModalVisible(false)}
-        onConfirm={handleLogout}
-        cancelText="No"
-        confirmText="Yes"
-      />
     </ThemedView>
   );
 }

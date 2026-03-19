@@ -1,23 +1,25 @@
 import SegmentButton from "@/components/buttons/segment-button";
+import RankingItem from "@/components/ranking-item";
 import { useAppTheme } from "@/hooks/use-app-theme";
+import { useGetMe } from "@/query/useGetMe.query";
 import {
   useGetCoinsRanking,
   useGetPerformanceRanking,
 } from "@/query/useGetRanking.query";
 import { createStyles } from "@/styles/ranking.style";
 import { BlurView } from "expo-blur";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import {
   ActivityIndicator,
   FlatList,
   Text,
-  View,
+  View
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 type RankingType = "performance" | "coins";
 
-export default function RankingScreen() {
+const RankingScreen = () => {
   const colors = useAppTheme();
   const styles = createStyles(colors);
 
@@ -25,6 +27,7 @@ export default function RankingScreen() {
 
   const performanceQuery = useGetPerformanceRanking();
   const coinsQuery = useGetCoinsRanking();
+  const { data: currentUser } = useGetMe()
 
   const isPerformance = type === "performance";
 
@@ -53,34 +56,47 @@ export default function RankingScreen() {
     );
   }
 
+  const displayedData = useMemo(() => {
+    if (!currentUser) return data;
+    const top3 = data.slice(0, 3);
+    const rest = data.slice(3);
+    const selfIndex = rest.findIndex((item: any) => item.id === currentUser.id);
+    if (selfIndex === -1) return data;
+    const self = rest.splice(selfIndex, 1)[0];
+
+    return [...top3, self, ...rest];
+  }, [data, currentUser]);
+
   return (
     <SafeAreaView style={styles.container}>
       {/* 🔁 Toggle */}
-      <View style={styles.toggleWrapper}>
-        <BlurView intensity={50} tint="light" style={styles.toggle}>
-          <SegmentButton
-            title="Performance"
-            isActive={isPerformance}
-            onPress={() => setType("performance")}
-          />
-          <SegmentButton
-            title="Coins"
-            isActive={!isPerformance}
-            onPress={() => setType("coins")}
-          />
-        </BlurView>
-      </View>
-
-      {/* 📊 Ranking List */}
       <FlatList
-        data={data}
+        data={displayedData}
         keyExtractor={(item) => item.id}
         contentContainerStyle={styles.listContent}
+        ListHeaderComponent={
+          <BlurView intensity={70} tint="light" style={styles.stickyToggle}>
+            <SegmentButton
+              colors={colors}
+              title="Performance"
+              isActive={isPerformance}
+              onPress={() => setType("performance")}
+            />
+            <SegmentButton
+              colors={colors}
+              title="Coins"
+              isActive={!isPerformance}
+              onPress={() => setType("coins")}
+            />
+          </BlurView>
+        }
+        stickyHeaderIndices={[0]}
         renderItem={({ item, index }) => (
           <RankingItem
             item={item}
             index={index}
             type={type}
+            bgColor={colors.background}
           />
         )}
       />
@@ -88,37 +104,4 @@ export default function RankingScreen() {
   );
 }
 
-function RankingItem({ item, index, type, bgColor }: any) {
-  const isPerformance = type === "performance";
-
-  return (
-    <View
-      style={{
-        padding: 14,
-        marginBottom: 10,
-        backgroundColor: bgColor,
-        borderRadius: 12,
-        flexDirection: "row",
-        justifyContent: "space-between",
-        alignItems: "center",
-      }}
-    >
-      {/* LEFT */}
-      <Text style={{ fontWeight: "600" }}>
-        {index + 1} {item.name}
-      </Text>
-
-      {/* RIGHT */}
-      {isPerformance ? (
-        <View>
-          <Text>⭐ {item.avgScore?.toFixed(1)}</Text>
-          <Text style={{ fontSize: 12, opacity: 0.6 }}>
-            {item.totalScores} lessons
-          </Text>
-        </View>
-      ) : (
-        <Text>🪙 {item.coins}</Text>
-      )}
-    </View>
-  );
-}
+export default RankingScreen

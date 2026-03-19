@@ -8,7 +8,7 @@ import { Dimensions, StyleSheet, View } from 'react-native';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
-export default function TabLayout() {
+const TabLayout = () => {
   const colorScheme = useColorScheme();
   const colors = Colors[colorScheme ?? 'light'];
 
@@ -32,7 +32,7 @@ export default function TabLayout() {
         name="index"
         options={{
           tabBarIcon: ({ focused, color }) => (
-            <View style={[styles.iconContainer, focused && { backgroundColor: '#936afa13' }]}>
+            <View style={[styles.iconContainer, focused && { backgroundColor: '#77777713' }]}>
               <IconSymbol size={28} name="house.fill" color={focused ? colors.tint : color} />
             </View>
           ),
@@ -53,7 +53,7 @@ export default function TabLayout() {
         options={{
           tabBarIcon: ({ focused, color }) => (
             <View style={[styles.iconContainer, focused && { backgroundColor: '#77777713' }]}>
-              <IconSymbol size={28} name="square.grid.2x2.fill" color={focused ? colors.tint : color} />
+              <IconSymbol size={24} name="square.grid.2x2.fill" color={focused ? colors.tint : color} />
             </View>
           ),
         }}
@@ -62,21 +62,23 @@ export default function TabLayout() {
   );
 }
 
+export default TabLayout
+
 const styles = StyleSheet.create({
   iconContainer: {
-    width: 70,
-    height: 60,
+    width: 60,
+    height: 50,
     borderRadius: 30,
     justifyContent: 'center',
     alignItems: 'center',
   },
   tabBarStyle: {
     position: 'absolute',
-    height: 80,
+    height: 70,
     bottom: 20,
     marginHorizontal: SCREEN_WIDTH * 0.05,
     width: SCREEN_WIDTH * 0.9,
-    elevation: 0,
+    elevation: 5,
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
