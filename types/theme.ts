@@ -7,6 +7,9 @@ export type ThemeColors = {
   backgroundSecondary: string;
   border: string;
   tint: string;
-  danger: string
-  icon: string
+  red1: string;
+  red2: string;
+  icon: string;
+  green1: string;
+  green2: string
 };

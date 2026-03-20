@@ -18,8 +18,11 @@ export const Colors: {
     backgroundSecondary: '#faf9fd',
     border: '#c8c8c8',
     tint: tintColorLight,
-    danger: '#rgb(255, 137, 137)',
-    icon: '#5f5f5f'
+    red1: '#d63a49',
+    red2: '#f9dbdb',
+    icon: '#5f5f5f',
+    green1: '#155724',
+    green2: '#d9f2d1',
   },
   dark: {
     text: '#ECEDEE',
@@ -30,8 +33,11 @@ export const Colors: {
     backgroundSecondary: '#101012',
     border: '#333333',
     tint: tintColorDark,
-    danger: '#rgb(255, 137, 137)',
-    icon: '#5f5f5f'
+    red1: '#d63a49',
+    red2: '#feaeae',
+    icon: '#5f5f5f',
+    green1: '#155724',
+    green2: '#d8fccd',
   },
 };
 

@@ -48,7 +48,7 @@ const RankingScreen = () => {
 
     const top3 = rankingData.slice(0, 3);
     const rest = rankingData.slice(3);
-    const selfIndex = rest.findIndex(item => item.studentId === currentUser.id);
+    const selfIndex = rest.findIndex(item => item.userId === currentUser.id);
 
     if (selfIndex === -1) return rankingData;
 
@@ -60,7 +60,7 @@ const RankingScreen = () => {
     <SafeAreaView style={styles.container}>
       <FlatList
         data={displayedData}
-        keyExtractor={item => item.studentId}
+        keyExtractor={item => item.userId}
         contentContainerStyle={styles.listContent}
         refreshControl={<RefreshControl refreshing={isRefetching} onRefresh={refetch} />}
         ListHeaderComponent={

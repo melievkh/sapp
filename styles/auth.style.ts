@@ -1,10 +1,10 @@
 import { ThemeColors } from '@/types/theme';
 import { StyleSheet } from 'react-native';
 
-export const createStyles = (theme: ThemeColors) => StyleSheet.create({
+export const createStyles = (colors: ThemeColors) => StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: theme.tint,
+    backgroundColor: colors.tint,
   },
   header: {
     paddingTop: 80,
@@ -16,7 +16,7 @@ export const createStyles = (theme: ThemeColors) => StyleSheet.create({
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     padding: 24,
-    backgroundColor: theme.background,
+    backgroundColor: colors.background,
   },
   welcome: {
     fontSize: 28,
@@ -54,16 +54,16 @@ export const createStyles = (theme: ThemeColors) => StyleSheet.create({
     textAlign: "center",
     fontSize: 14,
     marginBottom: 20,
-    color: theme.textSecondary,
+    color: colors.textSecondary,
   },
   showPassword: {
     fontSize: 14,
-    color: theme.textSecondary,
+    color: colors.textSecondary,
   },
   link: {
     textDecorationLine: "underline",
     fontWeight: "500",
-    color: theme.textSecondary,
+    color: colors.textSecondary,
   },
   button: {
     height: 50,
@@ -71,10 +71,10 @@ export const createStyles = (theme: ThemeColors) => StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginBottom: 15,
-    backgroundColor: theme.tint,
+    backgroundColor: colors.tint,
   },
   buttonText: {
-    color: theme.white,
+    color: colors.white,
     fontSize: 16,
     fontWeight: '600',
   },
@@ -85,7 +85,7 @@ export const createStyles = (theme: ThemeColors) => StyleSheet.create({
   forgot: {
     textAlign: "center",
     fontSize: 14,
-    color: theme.textSecondary,
+    color: colors.textSecondary,
   },
   version: {
     textAlign: "center",
@@ -101,7 +101,7 @@ export const createStyles = (theme: ThemeColors) => StyleSheet.create({
     marginBottom: 12,
   },
   errorText: {
-    color: '#FF3B30',
+    color: colors.red1,
     fontSize: 14,
     textAlign: 'center',
     fontWeight: '500',

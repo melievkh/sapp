@@ -4,20 +4,20 @@ import { useQuery } from "@tanstack/react-query";
 
 export const useGetPerformanceRanking = () => {
   return useQuery<RankingItemType[]>({
-    queryKey: ["ranking", "performance"],
+    queryKey: ["ranking"],
     queryFn: async () => {
-      const res = await api.get("/ranking/performance");
+      const res = await api.get("/ranking");
       return res.data.data;
     },
   });
 };
 
-export const useGetCoinsRanking = () => {
-  return useQuery({
-    queryKey: ["ranking", "coins"],
+export const useGetMyPerformance = () => {
+  return useQuery<RankingItemType | null>({
+    queryKey: ["ranking", "me"],
     queryFn: async () => {
-      const res = await api.get("/ranking/coins");
-      return res.data;
+      const res = await api.get(`/ranking/me`);
+      return res.data.data as RankingItemType;
     },
   });
 };

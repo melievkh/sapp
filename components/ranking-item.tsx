@@ -1,6 +1,5 @@
 import { RankingItemType } from "@/types/api.type";
 import { ThemeColors } from "@/types/theme";
-import React from "react";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { ThemedText } from "./themed-text";
 
@@ -12,6 +11,7 @@ type Props = {
 };
 
 const RankingItem = ({ item, index, type, colors }: Props) => {
+  const styles = createStyles(colors)
   const isMyLevel = type === "myLevel";
 
   const medalEmojis = ["🥇", "🥈", "🥉"];
@@ -32,12 +32,12 @@ const RankingItem = ({ item, index, type, colors }: Props) => {
       <View style={styles.right}>
         {isMyLevel ? (
           <>
-            <ThemedText style={styles.scoreText}>⭐ {item.avgScore?.toFixed(1)}</ThemedText>
+            <ThemedText style={styles.scoreText}>⭐ {item.rankScore?.toFixed(1)}</ThemedText>
             <ThemedText style={styles.lessonsText}>{item.totalScores} lessons</ThemedText>
           </>
         ) : (
           <>
-            <ThemedText style={styles.scoreText}>⭐ {item.avgScore?.toFixed(1)}</ThemedText>
+            <ThemedText style={styles.scoreText}>⭐ {item.rankScore?.toFixed(1)}</ThemedText>
             <ThemedText style={styles.lessonsText}>{item.totalScores} lessons</ThemedText>
           </>
         )}
@@ -46,7 +46,7 @@ const RankingItem = ({ item, index, type, colors }: Props) => {
   );
 };
 
-const styles = StyleSheet.create({
+const createStyles = (colors: ThemeColors) => StyleSheet.create({
   container: {
     padding: 12,
     borderRadius: 22,
@@ -64,7 +64,8 @@ const styles = StyleSheet.create({
     fontSize: 18,
     width: 28,
     textAlign: "center",
-    marginRight: 8,
+    marginRight: 10,
+    color: colors.textSecondary
   },
   nameText: {
     fontWeight: "600",
@@ -72,8 +73,7 @@ const styles = StyleSheet.create({
   },
   levelText: {
     fontSize: 12,
-    color: "#666",
-    marginTop: 2,
+    color: colors.textSecondary,
   },
   right: {
     alignItems: "flex-end",
@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
   },
   lessonsText: {
     fontSize: 12,
-    opacity: 0.6,
+    color: colors.textSecondary
   },
 });
 

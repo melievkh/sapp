@@ -21,7 +21,7 @@ api.interceptors.response.use(
   (response) => response,
 
   async (error) => {
-    // console.error("API error:", error.response?.data);
+    console.error("API error:", error.response?.data);
 
     const status = error.response?.status;
     const message =

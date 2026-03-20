@@ -15,6 +15,7 @@ export type User = {
   birthDate?: Date | null;
   coins: number;
   createdAt: Date;
+  isActive: Boolean;
 
   student?: Student;
   teacher?: Teacher;
@@ -109,10 +110,22 @@ export type Voucher = {
 };
 
 export type RankingItemType = {
-  studentId: string;
+  userId: string;
   fullname: string;
   level: string;
   avgScore: number;
   totalScores: number;
   rankScore: number;
+  rank?: number
+}
+
+export interface MyPaymentStatusType {
+  courseId: string;
+  courseName: string;
+  monthlyPrice: string;
+  months: {
+    month: number;
+    year: number;
+    paid: boolean;
+  }[]
 }
