@@ -5,7 +5,7 @@ export const createStyles = (theme: ThemeColors) => StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    backgroundColor: theme.background
+    backgroundColor: theme.backgroundSecondary
   },
   loading: {
     flex: 1,
@@ -37,7 +37,7 @@ export const createStyles = (theme: ThemeColors) => StyleSheet.create({
     fontSize: 14,
   },
   statValue: {
-    fontSize: 18,
+    fontSize: 15,
     fontWeight: 'bold',
     marginTop: 5,
   },

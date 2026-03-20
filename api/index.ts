@@ -18,12 +18,10 @@ api.interceptors.request.use(async (config) => {
 });
 
 api.interceptors.response.use(
-  (response) => {
-    return response;
-  },
+  (response) => response,
 
   async (error) => {
-    console.error("API error:", error.response?.data);
+    // console.error("API error:", error.response?.data);
 
     const status = error.response?.status;
     const message =

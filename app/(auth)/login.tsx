@@ -7,10 +7,9 @@ import { createStyles } from '@/styles/auth.style';
 import { useRouter } from "expo-router";
 import React, { useState } from 'react';
 import {
-  Alert,
+  ActivityIndicator,
   KeyboardAvoidingView,
   Platform,
-  ScrollView,
   StatusBar,
   TouchableOpacity,
   View
@@ -24,19 +23,13 @@ const LoginScreen = () => {
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
 
-  const { mutate, error } = useLogin();
+  const { mutate, error, isError, isPending, reset } = useLogin();
 
   const handleLogin = () => {
-    if (!login || !password) {
-      Alert.alert('Error', 'Please fill all fields');
-      return;
-    }
-
     mutate(
       { login, password },
       {
         onSuccess: () => router.push('/(tabs)'),
-        onError: () => Alert.alert(`${error?.response?.data.message}!`)
       },
     );
   };
@@ -45,12 +38,9 @@ const LoginScreen = () => {
     <KeyboardAvoidingView
       style={{ flex: 1 }}
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      keyboardVerticalOffset={Platform.OS === 'ios' ? 60 : 0} // adjust if you have a header
+      keyboardVerticalOffset={Platform.OS === 'ios' ? 60 : 0}
     >
-      <ScrollView
-        contentContainerStyle={{ flexGrow: 1 }}
-        keyboardShouldPersistTaps="handled"
-      >
+      <View style={{ flexGrow: 1 }}>
         <ThemedView style={styles.container}>
           <StatusBar barStyle="dark-content" />
 
@@ -64,7 +54,10 @@ const LoginScreen = () => {
             <InputField
               placeholder="Enter login"
               value={login}
-              onChangeText={setLogin}
+              onChangeText={(text) => {
+                setLogin(text);
+                if (isError) reset();
+              }}
               numericOnly
               maxLength={9}
               keyboardType="number-pad"
@@ -77,7 +70,10 @@ const LoginScreen = () => {
             <InputField
               placeholder="Enter password"
               value={password}
-              onChangeText={setPassword}
+              onChangeText={(text) => {
+                setPassword(text);
+                if (isError) reset();
+              }}
               secureTextEntry
               style={{
                 container: styles.passwordContainer,
@@ -86,13 +82,32 @@ const LoginScreen = () => {
               }}
             />
 
+            {isError && (
+              <View style={styles.errorBox}>
+                <ThemedText style={styles.errorText}>
+                  ⚠️ {(error as any)?.message || "Invalid login or password"}
+                </ThemedText>
+              </View>
+            )}
+
             <ThemedText style={styles.policy}>
               By using the App, I accept the{' '}
               <ThemedText style={styles.link}>Public Offer</ThemedText>
             </ThemedText>
 
-            <TouchableOpacity style={styles.button} onPress={handleLogin}>
-              <ThemedText style={{ color: colors.white }}>Get Started</ThemedText>
+            <TouchableOpacity
+              style={[
+                styles.button,
+                (isPending || !login || !password) && styles.buttonDisabled
+              ]}
+              onPress={handleLogin}
+              disabled={isPending || !login || !password}
+            >
+              {isPending ? (
+                <ActivityIndicator size={20} />
+              ) : (
+                <ThemedText style={styles.buttonText}>Get Started</ThemedText>
+              )}
             </TouchableOpacity>
 
             <TouchableOpacity>
@@ -100,7 +115,7 @@ const LoginScreen = () => {
             </TouchableOpacity>
           </ThemedView>
         </ThemedView>
-      </ScrollView>
+      </View>
     </KeyboardAvoidingView>
   );
 };

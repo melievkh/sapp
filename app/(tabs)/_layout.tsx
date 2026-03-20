@@ -49,7 +49,7 @@ const TabLayout = () => {
         }}
       />
       <Tabs.Screen
-        name="services"
+        name="profile"
         options={{
           tabBarIcon: ({ focused, color }) => (
             <View style={[styles.iconContainer, focused && { backgroundColor: '#77777713' }]}>
@@ -61,8 +61,6 @@ const TabLayout = () => {
     </Tabs >
   );
 }
-
-export default TabLayout
 
 const styles = StyleSheet.create({
   iconContainer: {
@@ -87,3 +85,5 @@ const styles = StyleSheet.create({
     shadowRadius: 10,
   }
 });
+
+export default TabLayout

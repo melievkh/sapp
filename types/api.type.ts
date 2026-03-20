@@ -107,3 +107,12 @@ export type Voucher = {
   student: Student;
   payment?: Payment | null;
 };
+
+export type RankingItemType = {
+  studentId: string;
+  fullname: string;
+  level: string;
+  avgScore: number;
+  totalScores: number;
+  rankScore: number;
+}

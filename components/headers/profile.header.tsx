@@ -8,13 +8,13 @@ import * as SecureStore from 'expo-secure-store';
 import React from 'react';
 import { Alert, StyleSheet, TouchableOpacity, View } from 'react-native';
 
-const ServicesHeader = (data: { user: User }) => {
+const ProfileHeader = (data: { user: User }) => {
   const colors = useAppTheme();
   const router = useRouter()
 
   const handleLogout = async () => {
-    await SecureStore.deleteItemAsync('accessToken'); // delete token
-    router.replace('/(auth)/login'); // navigate to login
+    await SecureStore.deleteItemAsync('accessToken');
+    router.replace('/(auth)/login');
   };
 
   const confirmLogout = () => {
@@ -29,7 +29,7 @@ const ServicesHeader = (data: { user: User }) => {
     );
   };
   return (
-    <ThemedView style={styles.header}>
+    <ThemedView style={[styles.container, { backgroundColor: colors.backgroundSecondary }]}>
       <View>
         <ThemedText style={styles.name}>{data.user.fullname}</ThemedText>
         <ThemedText style={styles.role}>{data.user.role}</ThemedText>
@@ -43,11 +43,11 @@ const ServicesHeader = (data: { user: User }) => {
 }
 
 const styles = StyleSheet.create({
-  header: {
+  container: {
     marginBottom: 20,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   name: {
     fontSize: 20,
@@ -59,4 +59,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default ServicesHeader;
+export default ProfileHeader;

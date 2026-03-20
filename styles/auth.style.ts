@@ -67,11 +67,20 @@ export const createStyles = (theme: ThemeColors) => StyleSheet.create({
   },
   button: {
     height: 50,
-    borderRadius: 16,
+    borderRadius: 20,
     justifyContent: "center",
     alignItems: "center",
     marginBottom: 15,
     backgroundColor: theme.tint,
+  },
+  buttonText: {
+    color: theme.white,
+    fontSize: 16,
+    fontWeight: '600',
+  },
+
+  buttonDisabled: {
+    opacity: 0.6,
   },
   forgot: {
     textAlign: "center",
@@ -83,5 +92,18 @@ export const createStyles = (theme: ThemeColors) => StyleSheet.create({
     paddingBottom: 25,
     fontSize: 14,
     color: "#7A7A7A",
+  },
+  errorBox: {
+    backgroundColor: 'rgba(255, 59, 48, 0.1)',
+    borderRadius: 20,
+    paddingVertical: 10,
+    paddingHorizontal: 12,
+    marginBottom: 12,
+  },
+  errorText: {
+    color: '#FF3B30',
+    fontSize: 14,
+    textAlign: 'center',
+    fontWeight: '500',
   },
 });

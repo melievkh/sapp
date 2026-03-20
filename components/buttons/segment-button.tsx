@@ -28,8 +28,6 @@ const SegmentButton = ({
   );
 }
 
-export default SegmentButton
-
 const styles = StyleSheet.create({
   button: {
     flex: 1,
@@ -44,3 +42,5 @@ const styles = StyleSheet.create({
     fontWeight: "600",
   },
 });
+
+export default SegmentButton

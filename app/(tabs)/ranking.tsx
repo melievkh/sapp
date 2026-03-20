@@ -1,44 +1,27 @@
+import { BlurView } from "expo-blur";
+import React, { useMemo, useState } from "react";
+import { ActivityIndicator, FlatList, RefreshControl, Text, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+
 import SegmentButton from "@/components/buttons/segment-button";
 import RankingItem from "@/components/ranking-item";
 import { useAppTheme } from "@/hooks/use-app-theme";
 import { useGetMe } from "@/query/useGetMe.query";
-import {
-  useGetCoinsRanking,
-  useGetPerformanceRanking,
-} from "@/query/useGetRanking.query";
+import { useGetPerformanceRanking } from "@/query/useGetRanking.query";
 import { createStyles } from "@/styles/ranking.style";
-import { BlurView } from "expo-blur";
-import React, { useMemo, useState } from "react";
-import {
-  ActivityIndicator,
-  FlatList,
-  Text,
-  View
-} from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 
-type RankingType = "performance" | "coins";
+type RankingType = "myLevel" | "allLevels";
 
 const RankingScreen = () => {
   const colors = useAppTheme();
   const styles = createStyles(colors);
 
-  const [type, setType] = useState<RankingType>("performance");
+  const [type, setType] = useState<RankingType>("myLevel");
 
-  const performanceQuery = useGetPerformanceRanking();
-  const coinsQuery = useGetCoinsRanking();
-  const { data: currentUser } = useGetMe()
+  const { data: rankingData, refetch, isRefetching, isLoading } = useGetPerformanceRanking();
+  const { data: currentUser } = useGetMe();
 
-  const isPerformance = type === "performance";
-
-  const data = isPerformance
-    ? performanceQuery.data
-    : coinsQuery.data;
-
-  const isLoading = isPerformance
-    ? performanceQuery.isLoading
-    : coinsQuery.isLoading;
-
+  const isMyLevel = type === "myLevel";
 
   if (isLoading) {
     return (
@@ -48,7 +31,7 @@ const RankingScreen = () => {
     );
   }
 
-  if (!data?.length) {
+  if (!rankingData?.length) {
     return (
       <View style={styles.center}>
         <Text>No ranking yet</Text>
@@ -57,36 +40,42 @@ const RankingScreen = () => {
   }
 
   const displayedData = useMemo(() => {
-    if (!currentUser) return data;
-    const top3 = data.slice(0, 3);
-    const rest = data.slice(3);
-    const selfIndex = rest.findIndex((item: any) => item.id === currentUser.id);
-    if (selfIndex === -1) return data;
-    const self = rest.splice(selfIndex, 1)[0];
+    if (!currentUser) return rankingData;
 
+    if (isMyLevel) {
+      return rankingData.filter(item => item.level === currentUser.student?.level);
+    }
+
+    const top3 = rankingData.slice(0, 3);
+    const rest = rankingData.slice(3);
+    const selfIndex = rest.findIndex(item => item.studentId === currentUser.id);
+
+    if (selfIndex === -1) return rankingData;
+
+    const self = rest.splice(selfIndex, 1)[0];
     return [...top3, self, ...rest];
-  }, [data, currentUser]);
+  }, [rankingData, currentUser, isMyLevel]);
 
   return (
     <SafeAreaView style={styles.container}>
-      {/* 🔁 Toggle */}
       <FlatList
         data={displayedData}
-        keyExtractor={(item) => item.id}
+        keyExtractor={item => item.studentId}
         contentContainerStyle={styles.listContent}
+        refreshControl={<RefreshControl refreshing={isRefetching} onRefresh={refetch} />}
         ListHeaderComponent={
-          <BlurView intensity={70} tint="light" style={styles.stickyToggle}>
+          <BlurView intensity={40} tint="light" style={styles.stickyToggle}>
             <SegmentButton
               colors={colors}
-              title="Performance"
-              isActive={isPerformance}
-              onPress={() => setType("performance")}
+              title="My Level"
+              isActive={isMyLevel}
+              onPress={() => setType("myLevel")}
             />
             <SegmentButton
               colors={colors}
-              title="Coins"
-              isActive={!isPerformance}
-              onPress={() => setType("coins")}
+              title="All Levels"
+              isActive={!isMyLevel}
+              onPress={() => setType("allLevels")}
             />
           </BlurView>
         }
@@ -96,12 +85,12 @@ const RankingScreen = () => {
             item={item}
             index={index}
             type={type}
-            bgColor={colors.background}
+            colors={colors}
           />
         )}
       />
     </SafeAreaView>
   );
-}
+};
 
-export default RankingScreen
+export default RankingScreen;
