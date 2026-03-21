@@ -1,7 +1,7 @@
-import { ThemeColors } from "@/types/theme";
-import React from "react";
-import { StyleSheet, TouchableOpacity } from "react-native";
-import { ThemedText } from "../themed-text";
+import React from 'react';
+import { StyleSheet, TouchableOpacity } from 'react-native';
+import { ThemeColors } from '@/types/theme';
+import { ThemedText } from '../themed-text';
 
 type Props = {
   colors: ThemeColors;
@@ -10,37 +10,37 @@ type Props = {
   onPress: () => void;
 };
 
-const SegmentButton = ({
-  colors,
-  title,
-  isActive,
-  onPress,
-}: Props) => {
+const SegmentButton = ({ colors, title, isActive, onPress }: Props) => {
   return (
     <TouchableOpacity
       onPress={onPress}
-      style={[styles.button, isActive && [styles.buttonActive, { backgroundColor: colors.backgroundSecondary }]]}
+      style={[
+        styles.button,
+        isActive && [
+          styles.buttonActive,
+          { backgroundColor: colors.backgroundSecondary },
+        ],
+      ]}
     >
       <ThemedText type="defaultSemiBold" style={styles.text}>
         {title}
       </ThemedText>
-    </TouchableOpacity >
+    </TouchableOpacity>
   );
-}
+};
 
 const styles = StyleSheet.create({
   button: {
     flex: 1,
     paddingVertical: 8,
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: 30
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 30,
   },
-  buttonActive: {
-  },
+  buttonActive: {},
   text: {
-    fontWeight: "600",
+    fontWeight: '600',
   },
 });
 
-export default SegmentButton
+export default SegmentButton;

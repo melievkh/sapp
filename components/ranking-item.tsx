@@ -1,24 +1,26 @@
-import { RankingItemType } from "@/types/api.type";
-import { ThemeColors } from "@/types/theme";
-import { StyleSheet, TouchableOpacity, View } from "react-native";
-import { ThemedText } from "./themed-text";
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
+import { RankingItemType } from '@/types/api.type';
+import { ThemeColors } from '@/types/theme';
+import { ThemedText } from './themed-text';
 
 type Props = {
   item: RankingItemType;
   index: number;
-  type: "myLevel" | "allLevels";
+  type: 'myLevel' | 'allLevels';
   colors: ThemeColors;
 };
 
 const RankingItem = ({ item, index, type, colors }: Props) => {
-  const styles = createStyles(colors)
-  const isMyLevel = type === "myLevel";
+  const styles = createStyles(colors);
+  const isMyLevel = type === 'myLevel';
 
-  const medalEmojis = ["🥇", "🥈", "🥉"];
+  const medalEmojis = ['🥇', '🥈', '🥉'];
   const rankDisplay = index < 3 ? medalEmojis[index] : `${index + 1}`;
 
   return (
-    <TouchableOpacity style={[styles.container, { borderBottomColor: colors.border }]}>
+    <TouchableOpacity
+      style={[styles.container, { borderBottomColor: colors.border }]}
+    >
       <View style={styles.left}>
         <ThemedText style={styles.rankText}>{rankDisplay}</ThemedText>
         <View>
@@ -32,13 +34,21 @@ const RankingItem = ({ item, index, type, colors }: Props) => {
       <View style={styles.right}>
         {isMyLevel ? (
           <>
-            <ThemedText style={styles.scoreText}>⭐ {item.rankScore?.toFixed(1)}</ThemedText>
-            <ThemedText style={styles.lessonsText}>{item.totalScores} lessons</ThemedText>
+            <ThemedText style={styles.scoreText}>
+              ⭐ {item.rankScore?.toFixed(1)}
+            </ThemedText>
+            <ThemedText style={styles.lessonsText}>
+              {item.totalScores} lessons
+            </ThemedText>
           </>
         ) : (
           <>
-            <ThemedText style={styles.scoreText}>⭐ {item.rankScore?.toFixed(1)}</ThemedText>
-            <ThemedText style={styles.lessonsText}>{item.totalScores} lessons</ThemedText>
+            <ThemedText style={styles.scoreText}>
+              ⭐ {item.rankScore?.toFixed(1)}
+            </ThemedText>
+            <ThemedText style={styles.lessonsText}>
+              {item.totalScores} lessons
+            </ThemedText>
           </>
         )}
       </View>
@@ -46,46 +56,47 @@ const RankingItem = ({ item, index, type, colors }: Props) => {
   );
 };
 
-const createStyles = (colors: ThemeColors) => StyleSheet.create({
-  container: {
-    padding: 12,
-    borderRadius: 22,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    borderBottomWidth: 1
-  },
-  left: {
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  rankText: {
-    fontWeight: "700",
-    fontSize: 18,
-    width: 28,
-    textAlign: "center",
-    marginRight: 10,
-    color: colors.textSecondary
-  },
-  nameText: {
-    fontWeight: "600",
-    fontSize: 16,
-  },
-  levelText: {
-    fontSize: 12,
-    color: colors.textSecondary,
-  },
-  right: {
-    alignItems: "flex-end",
-  },
-  scoreText: {
-    fontWeight: "600",
-    fontSize: 14,
-  },
-  lessonsText: {
-    fontSize: 12,
-    color: colors.textSecondary
-  },
-});
+const createStyles = (colors: ThemeColors) =>
+  StyleSheet.create({
+    container: {
+      padding: 12,
+      borderRadius: 22,
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      borderBottomWidth: 1,
+    },
+    left: {
+      flexDirection: 'row',
+      alignItems: 'center',
+    },
+    rankText: {
+      fontWeight: '700',
+      fontSize: 18,
+      width: 28,
+      textAlign: 'center',
+      marginRight: 10,
+      color: colors.textSecondary,
+    },
+    nameText: {
+      fontWeight: '600',
+      fontSize: 16,
+    },
+    levelText: {
+      fontSize: 12,
+      color: colors.textSecondary,
+    },
+    right: {
+      alignItems: 'flex-end',
+    },
+    scoreText: {
+      fontWeight: '600',
+      fontSize: 14,
+    },
+    lessonsText: {
+      fontSize: 12,
+      color: colors.textSecondary,
+    },
+  });
 
 export default RankingItem;

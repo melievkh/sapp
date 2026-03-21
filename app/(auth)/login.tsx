@@ -1,18 +1,18 @@
-import InputField from '@/components/input';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { useAppTheme } from '@/hooks/use-app-theme';
-import { useLogin } from '@/query/useLogin.query';
-import { createStyles } from '@/styles/auth.style';
-import { useRouter } from "expo-router";
 import React, { useState } from 'react';
 import {
   ActivityIndicator,
   KeyboardAvoidingView,
   Platform,
   TouchableOpacity,
-  View
+  View,
 } from 'react-native';
+import { useRouter } from 'expo-router';
+import InputField from '@/components/input';
+import { ThemedText } from '@/components/themed-text';
+import { ThemedView } from '@/components/themed-view';
+import { useAppTheme } from '@/hooks/use-app-theme';
+import { useLogin } from '@/query/useLogin.query';
+import { createStyles } from '@/styles/auth.style';
 
 const LoginScreen = () => {
   const colors = useAppTheme();
@@ -41,10 +41,7 @@ const LoginScreen = () => {
     >
       <View style={{ flexGrow: 1 }}>
         <ThemedView style={styles.container}>
-
-          <View style={styles.header}>
-            {/* Header content */}
-          </View>
+          <View style={styles.header}>{/* Header content */}</View>
 
           <ThemedView style={styles.card}>
             <ThemedText style={[styles.welcome]}>Welcome!</ThemedText>
@@ -83,7 +80,7 @@ const LoginScreen = () => {
             {isError && (
               <View style={styles.errorBox}>
                 <ThemedText style={styles.errorText}>
-                  ⚠️ {(error as any)?.message || "Invalid login or password"}
+                  ⚠️ {(error as any)?.message || 'Invalid login or password'}
                 </ThemedText>
               </View>
             )}
@@ -96,7 +93,7 @@ const LoginScreen = () => {
             <TouchableOpacity
               style={[
                 styles.button,
-                (isPending || !login || !password) && styles.buttonDisabled
+                (isPending || !login || !password) && styles.buttonDisabled,
               ]}
               onPress={handleLogin}
               disabled={isPending || !login || !password}

@@ -1,0 +1,32 @@
+{
+  "plugins": ["import"],
+  "rules": {
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          "parent",
+          "sibling",
+          "index"
+        ],
+        "pathGroups": [
+          {
+            "pattern": "react-native",
+            "group": "builtin",
+            "position": "after"
+          },
+          {
+            "pattern": "expo-*",
+            "group": "external",
+            "position": "after"
+          }
+        ],
+        "alphabetize": { "order": "asc", "caseInsensitive": true },
+        "newlines-between": "never"
+      }
+    ]
+  }
+}

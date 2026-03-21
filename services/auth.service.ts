@@ -1,4 +1,4 @@
-import { api } from "../api";
+import { api } from '../api';
 
 export type LoginDto = {
   login: string;
@@ -6,7 +6,7 @@ export type LoginDto = {
 };
 
 export const login = async (data: LoginDto) => {
-  const res = await api.post("/auth/login", data);
+  const res = await api.post('/auth/login', data);
 
   return res.data;
 };

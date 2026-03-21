@@ -1,6 +1,6 @@
-import { useAppTheme } from '@/hooks/use-app-theme';
 import React from 'react';
 import { Modal, TouchableOpacity, View } from 'react-native';
+import { useAppTheme } from '@/hooks/use-app-theme';
 import { ThemedText } from '../themed-text';
 import { ThemedView } from '../themed-view';
 import createStyles from './modal.style';
@@ -39,17 +39,19 @@ const CustomModal = ({
           {title ? <ThemedText style={styles.title}>{title}</ThemedText> : null}
           <ThemedText style={styles.message}>{message}</ThemedText>
           <View style={styles.buttonRow}>
-            <TouchableOpacity style={styles.cancelButton} onPress={onCancel} >
-              <ThemedText style={{ color: colors.textSecondary }}>{cancelText}</ThemedText>
+            <TouchableOpacity style={styles.cancelButton} onPress={onCancel}>
+              <ThemedText style={{ color: colors.textSecondary }}>
+                {cancelText}
+              </ThemedText>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.confirmButton} onPress={onConfirm} >
-              <ThemedText style={{ color: colors.white }}>{"Yes"}</ThemedText>
+            <TouchableOpacity style={styles.confirmButton} onPress={onConfirm}>
+              <ThemedText style={{ color: colors.white }}>{'Yes'}</ThemedText>
             </TouchableOpacity>
           </View>
         </View>
       </ThemedView>
-    </Modal >
+    </Modal>
   );
-}
+};
 
 export default CustomModal;

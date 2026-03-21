@@ -1,6 +1,6 @@
-import { api } from "@/api";
-import { User } from "@/types/api.type";
-import { useQuery, UseQueryResult } from "@tanstack/react-query";
+import { UseQueryResult, useQuery } from '@tanstack/react-query';
+import { api } from '@/api';
+import { User } from '@/types/api.type';
 
 export const useGetMe = (): UseQueryResult<User, Error> => {
   return useQuery<User, Error>({

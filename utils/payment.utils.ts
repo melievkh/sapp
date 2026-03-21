@@ -1,4 +1,4 @@
-import { MyPaymentStatusType } from "@/types/api.type";
+import { MyPaymentStatusType } from '@/types/api.type';
 
 type Month = {
   month: number;

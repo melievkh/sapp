@@ -1,6 +1,5 @@
-import { ThemeColors } from '@/types/theme';
 import { Platform } from 'react-native';
-
+import { ThemeColors } from '@/types/theme';
 
 const tintColorLight = '#ec7028';
 const tintColorDark = '#ec7028';
@@ -23,14 +22,14 @@ export const Colors: {
     icon: '#5f5f5f',
     green1: '#155724',
     green2: '#edfbe8',
-    shadow: '#000000'
+    shadow: '#000000',
   },
   dark: {
     text: '#ECEDEE',
     white: '#fff',
     black: '#000',
     textSecondary: '#7A7A7A',
-    background: '#131316',
+    background: '#111114',
     backgroundSecondary: '#000000',
     border: '#262626',
     tint: tintColorDark,
@@ -39,7 +38,7 @@ export const Colors: {
     icon: '#5f5f5f',
     green1: '#206b31',
     green2: '#293126',
-    shadow: '#656464'
+    shadow: '#656464',
   },
 };
 
@@ -63,7 +62,8 @@ export const Fonts = Platform.select({
   web: {
     sans: "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
     serif: "Georgia, 'Times New Roman', serif",
-    rounded: "'SF Pro Rounded', 'Hiragino Maru Gothic ProN', Meiryo, 'MS PGothic', sans-serif",
+    rounded:
+      "'SF Pro Rounded', 'Hiragino Maru Gothic ProN', Meiryo, 'MS PGothic', sans-serif",
     mono: "SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace",
   },
 });

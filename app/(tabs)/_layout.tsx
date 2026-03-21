@@ -1,10 +1,10 @@
+import React from 'react';
+import { Dimensions, StyleSheet, View } from 'react-native';
+import { BlurView } from 'expo-blur';
+import { Tabs } from 'expo-router';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 import { Colors } from '@/constants/theme';
 import { useColorScheme } from '@/hooks/use-color-scheme.web';
-import { BlurView } from 'expo-blur';
-import { Tabs } from 'expo-router';
-import React from 'react';
-import { Dimensions, StyleSheet, View } from 'react-native';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
@@ -19,21 +19,33 @@ const TabLayout = () => {
         tabBarShowLabel: false,
         tabBarStyle: styles.tabBarStyle,
         tabBarBackground: () => (
-          <BlurView intensity={30} style={{
-            ...StyleSheet.absoluteFillObject,
-            overflow: 'hidden',
-            borderRadius: 40,
-            backgroundColor: 'transparent',
-          }} />
-        )
+          <BlurView
+            intensity={30}
+            style={{
+              ...StyleSheet.absoluteFillObject,
+              overflow: 'hidden',
+              borderRadius: 40,
+              backgroundColor: 'transparent',
+            }}
+          />
+        ),
       }}
     >
       <Tabs.Screen
         name="index"
         options={{
           tabBarIcon: ({ focused, color }) => (
-            <View style={[styles.iconContainer, focused && { backgroundColor: '#77777713' }]}>
-              <IconSymbol size={28} name="house.fill" color={focused ? colors.tint : color} />
+            <View
+              style={[
+                styles.iconContainer,
+                focused && { backgroundColor: '#77777713' },
+              ]}
+            >
+              <IconSymbol
+                size={28}
+                name="house.fill"
+                color={focused ? colors.tint : color}
+              />
             </View>
           ),
         }}
@@ -42,8 +54,17 @@ const TabLayout = () => {
         name="ranking"
         options={{
           tabBarIcon: ({ focused, color }) => (
-            <View style={[styles.iconContainer, focused && { backgroundColor: '#77777713' }]}>
-              <IconSymbol size={28} name="trophy.circle.fill" color={focused ? colors.tint : color} />
+            <View
+              style={[
+                styles.iconContainer,
+                focused && { backgroundColor: '#77777713' },
+              ]}
+            >
+              <IconSymbol
+                size={28}
+                name="trophy.circle.fill"
+                color={focused ? colors.tint : color}
+              />
             </View>
           ),
         }}
@@ -52,15 +73,24 @@ const TabLayout = () => {
         name="profile"
         options={{
           tabBarIcon: ({ focused, color }) => (
-            <View style={[styles.iconContainer, focused && { backgroundColor: '#77777713' }]}>
-              <IconSymbol size={24} name="square.grid.2x2.fill" color={focused ? colors.tint : color} />
+            <View
+              style={[
+                styles.iconContainer,
+                focused && { backgroundColor: '#77777713' },
+              ]}
+            >
+              <IconSymbol
+                size={24}
+                name="square.grid.2x2.fill"
+                color={focused ? colors.tint : color}
+              />
             </View>
           ),
         }}
       />
-    </Tabs >
+    </Tabs>
   );
-}
+};
 
 const styles = StyleSheet.create({
   iconContainer: {
@@ -83,7 +113,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.12,
     shadowOffset: { width: 0, height: 5 },
     shadowRadius: 10,
-  }
+  },
 });
 
-export default TabLayout
+export default TabLayout;

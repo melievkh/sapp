@@ -1,7 +1,7 @@
+import { StyleSheet, View } from 'react-native';
+import { Stack } from 'expo-router';
 import { ThemedText } from '@/components/themed-text';
 import { useAppTheme } from '@/hooks/use-app-theme';
-import { Stack } from 'expo-router';
-import { StyleSheet, View } from 'react-native';
 
 export default function ProfileLayout() {
   const colors = useAppTheme();
@@ -26,8 +26,13 @@ export default function ProfileLayout() {
             headerShadowVisible: false,
 
             headerTitle: () => (
-              <View style={[styles.titleContainer, { backgroundColor: colors.background }]}>
-                <ThemedText type='defaultSemiBold'>{screen.title}</ThemedText>
+              <View
+                style={[
+                  styles.titleContainer,
+                  { backgroundColor: colors.background },
+                ]}
+              >
+                <ThemedText type="defaultSemiBold">{screen.title}</ThemedText>
               </View>
             ),
           }}

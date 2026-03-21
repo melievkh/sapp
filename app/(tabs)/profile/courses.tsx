@@ -1,11 +1,16 @@
-import { ThemedText } from "@/components/themed-text";
-import { useAppTheme } from "@/hooks/use-app-theme";
-import { useGetMe } from "@/query/useGetMe.query";
-import { createStyles } from "@/styles/courses.style";
-import { useRouter } from "expo-router";
-import React from "react";
-import { ActivityIndicator, FlatList, TouchableOpacity, View } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import React from 'react';
+import {
+  ActivityIndicator,
+  FlatList,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import { useRouter } from 'expo-router';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { ThemedText } from '@/components/themed-text';
+import { useAppTheme } from '@/hooks/use-app-theme';
+import { useGetMe } from '@/query/useGetMe.query';
+import { createStyles } from '@/styles/courses.style';
 
 const MyCoursesScreen = () => {
   const insets = useSafeAreaInsets();
@@ -29,15 +34,22 @@ const MyCoursesScreen = () => {
   };
 
   const renderCourse = ({ item }: any) => (
-    <TouchableOpacity style={styles.courseCard} onPress={() => handleCoursePress(item.id)}>
+    <TouchableOpacity
+      style={styles.courseCard}
+      onPress={() => handleCoursePress(item.id)}
+    >
       <View>
         <ThemedText style={styles.courseName}>{item.name}</ThemedText>
         <View style={styles.courseInfo}>
-          <ThemedText style={styles.courseLevel}>{item.level || "N/A"}</ThemedText>
+          <ThemedText style={styles.courseLevel}>
+            {item.level || 'N/A'}
+          </ThemedText>
           <ThemedText style={styles.monthlyBadge}>Monthly</ThemedText>
         </View>
       </View>
-      <ThemedText style={styles.coursePrice}>{item.price.toLocaleString()} UZS</ThemedText>
+      <ThemedText style={styles.coursePrice}>
+        {item.price.toLocaleString()} UZS
+      </ThemedText>
     </TouchableOpacity>
   );
 
@@ -46,7 +58,10 @@ const MyCoursesScreen = () => {
       data={courses}
       renderItem={renderCourse}
       keyExtractor={(item) => item.id}
-      contentContainerStyle={[styles.container, { paddingTop: insets.top + 60 }]}
+      contentContainerStyle={[
+        styles.container,
+        { paddingTop: insets.top + 60 },
+      ]}
       refreshing={isLoading}
       onRefresh={refetch}
       showsVerticalScrollIndicator={false}

@@ -1,16 +1,19 @@
-import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
-import { ActivityIndicator, RefreshControl, ScrollView, TouchableOpacity, View } from 'react-native';
-
-import ProfileHeader from '@/components/headers/profile.header';
+import {
+  ActivityIndicator,
+  Alert,
+  ScrollView,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import { useRouter } from 'expo-router';
+import * as SecureStore from 'expo-secure-store';
 import ThemeModal from '@/components/modal/theme/theme-modal';
 import { ThemedText } from '@/components/themed-text';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 import { useAppTheme } from '@/hooks/use-app-theme';
 import { useGetMe } from '@/query/useGetMe.query';
-import { useGetMyPerformance } from '@/query/useGetRanking.query';
 import { createStyles } from '@/styles/profile.styles';
-import { getRankDisplay } from '@/utils/ranking.utils';
 
 const ProfileScreen = () => {
   const colors = useAppTheme();
@@ -19,78 +22,80 @@ const ProfileScreen = () => {
 
   const [themeModalVisible, setThemeModalVisible] = useState<boolean>(false);
 
-  const { data: user, isLoading, error, isRefetching, refetch } = useGetMe();
-  const { data: myRanking, isLoading: isRankingLoading, refetch: refetchRanking } = useGetMyPerformance();
+  const { data: user, isLoading, error } = useGetMe();
 
   if (isLoading) return <ActivityIndicator size="large" style={{ flex: 1 }} />;
   if (error || !user)
     return (
-      <ThemedText style={styles.loading}>
-        Failed to load user data
-      </ThemedText>
+      <ThemedText style={styles.loading}>Failed to load user data</ThemedText>
     );
-
-  const stats = [
-    { id: 'coins', title: '🪙 Coins', value: user.coins },
-    { id: 'level', title: '🟡 Level', value: user.student?.level || 'N/A' },
-    { id: 'ranking', title: '🏆 My level ranking', value: getRankDisplay(myRanking?.rank, isRankingLoading) },
-    { id: 'avgScore', title: '🌟 Average Score', value: `${myRanking?.avgScore?.toFixed(1) || '0'}/50` },
-  ];
 
   const handleNavPress = (screen: any) => router.push(screen);
 
-  const handleRefresh = async () => {
-    await Promise.all([refetch(), refetchRanking()]);
+  const handleLogout = async () => {
+    await SecureStore.deleteItemAsync('accessToken');
+    router.replace('/(auth)/login');
   };
 
-  const renderStats = () => (
-    <View style={styles.statsContainer}>
-      {stats.map((item) => (
-        <TouchableOpacity key={item.id} style={styles.statItem}>
-          <ThemedText style={styles.statTitle}>{item.title}</ThemedText>
-          <ThemedText style={styles.statValue}>{item.value}</ThemedText>
-        </TouchableOpacity>
-      ))}
-    </View>
-  );
+  const confirmLogout = () => {
+    Alert.alert(
+      'Log Out',
+      'Are you sure you want to log out?',
+      [
+        { text: 'No', style: 'cancel' },
+        { text: 'Yes', onPress: handleLogout },
+      ],
+      { cancelable: true },
+    );
+  };
 
   const navItems = [
     { title: 'Payments', screen: '/(tabs)/profile/payment' },
     { title: 'My Courses', screen: '/(tabs)/profile/courses' },
-    { title: "Appearance", screen: "", onPress: () => setThemeModalVisible(true) },];
-
-  const renderNav = () => (
-    <View style={styles.navContainer}>
-      {navItems.map((item) => (
-        <TouchableOpacity
-          key={item.title}
-          style={styles.navItem}
-          onPress={item.onPress || (() => handleNavPress(item.screen))}
-        >
-          <ThemedText style={styles.navText}>{item.title}</ThemedText>
-          <IconSymbol size={16} name="chevron.right" color={colors.icon} />
-        </TouchableOpacity>
-      ))}
-    </View>
-  );
+    {
+      title: 'Appearance',
+      screen: '',
+      onPress: () => setThemeModalVisible(true),
+    },
+  ];
 
   return (
-    <ScrollView
-      style={styles.container}
-      refreshControl={
-        <RefreshControl
-          refreshing={isRefetching || isRankingLoading}
-          onRefresh={handleRefresh}
-        />
-      }
-    >
-      <ProfileHeader user={user} />
-      {renderStats()}
-      {renderNav()}
+    <ScrollView style={styles.container}>
+      {/* Profile Header */}
+      <View style={styles.profileContainer}>
+        <View>
+          <ThemedText style={styles.name}>{user.fullname}</ThemedText>
+          <ThemedText style={styles.role}>{user.role}</ThemedText>
+        </View>
 
-      <ThemeModal visible={themeModalVisible} onClose={() => setThemeModalVisible(false)} />
+        <TouchableOpacity onPress={confirmLogout}>
+          <IconSymbol
+            size={28}
+            name="rectangle.portrait.and.arrow.right"
+            color={colors.icon}
+          />
+        </TouchableOpacity>
+      </View>
+
+      {/* Navigation Bar */}
+      <View style={styles.navContainer}>
+        {navItems.map((item) => (
+          <TouchableOpacity
+            key={item.title}
+            style={styles.navItem}
+            onPress={item.onPress || (() => handleNavPress(item.screen))}
+          >
+            <ThemedText style={styles.navText}>{item.title}</ThemedText>
+            <IconSymbol size={16} name="chevron.right" color={colors.icon} />
+          </TouchableOpacity>
+        ))}
+      </View>
+
+      <ThemeModal
+        visible={themeModalVisible}
+        onClose={() => setThemeModalVisible(false)}
+      />
     </ScrollView>
-
   );
 };
 

@@ -1,28 +1,33 @@
-import { ThemedText } from "@/components/themed-text";
-import { useThemeContext } from "@/context/theme.context";
-import { useAppTheme } from "@/hooks/use-app-theme";
-import React from "react";
-import {
-  Modal,
-  Pressable,
-  Text,
-  TouchableOpacity,
-  View
-} from "react-native";
-import { createStyles } from "./theme-modal.style";
+import React from 'react';
+import { Modal, Pressable, Text, TouchableOpacity, View } from 'react-native';
+import { ThemedText } from '@/components/themed-text';
+import { useThemeContext } from '@/context/theme.context';
+import { useAppTheme } from '@/hooks/use-app-theme';
+import { createStyles } from './theme-modal.style';
 
-const ThemeModal = ({ visible, onClose }: { visible: boolean; onClose: () => void }) => {
+const ThemeModal = ({
+  visible,
+  onClose,
+}: {
+  visible: boolean;
+  onClose: () => void;
+}) => {
   const { theme, setTheme } = useThemeContext();
   const colors = useAppTheme();
-  const styles = createStyles(colors)
+  const styles = createStyles(colors);
 
-  const options: { label: string; value: "light" | "dark" }[] = [
-    { label: "Light", value: "light" },
-    { label: "Dark", value: "dark" },
+  const options: { label: string; value: 'light' | 'dark' }[] = [
+    { label: 'Light', value: 'light' },
+    { label: 'Dark', value: 'dark' },
   ];
 
   return (
-    <Modal animationType="slide" transparent visible={visible} onRequestClose={onClose}>
+    <Modal
+      animationType="slide"
+      transparent
+      visible={visible}
+      onRequestClose={onClose}
+    >
       <Pressable style={styles.overlay} onPress={onClose} />
 
       <View style={styles.modalContainer}>
@@ -36,13 +41,20 @@ const ThemeModal = ({ visible, onClose }: { visible: boolean; onClose: () => voi
               style={[
                 styles.optionButton,
                 {
-                  backgroundColor: isSelected ? colors.tint : colors.backgroundSecondary,
+                  backgroundColor: isSelected
+                    ? colors.tint
+                    : colors.backgroundSecondary,
                   borderColor: isSelected ? colors.tint : colors.border,
                 },
               ]}
               onPress={() => setTheme(opt.value)}
             >
-              <Text style={[styles.optionText, { color: isSelected ? colors.white : colors.text }]}>
+              <Text
+                style={[
+                  styles.optionText,
+                  { color: isSelected ? colors.white : colors.text },
+                ]}
+              >
                 {opt.label}
               </Text>
 
@@ -56,4 +68,3 @@ const ThemeModal = ({ visible, onClose }: { visible: boolean; onClose: () => voi
 };
 
 export default ThemeModal;
-

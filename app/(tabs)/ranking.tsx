@@ -1,27 +1,37 @@
-import { BlurView } from "expo-blur";
-import React, { useMemo, useState } from "react";
-import { ActivityIndicator, FlatList, RefreshControl, Text, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import React, { useMemo, useState } from 'react';
+import {
+  ActivityIndicator,
+  FlatList,
+  RefreshControl,
+  Text,
+  View,
+} from 'react-native';
+import { BlurView } from 'expo-blur';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import SegmentButton from '@/components/buttons/segment-button';
+import RankingItem from '@/components/ranking-item';
+import { useAppTheme } from '@/hooks/use-app-theme';
+import { useGetMe } from '@/query/useGetMe.query';
+import { useGetPerformanceRanking } from '@/query/useGetRanking.query';
+import { createStyles } from '@/styles/ranking.style';
 
-import SegmentButton from "@/components/buttons/segment-button";
-import RankingItem from "@/components/ranking-item";
-import { useAppTheme } from "@/hooks/use-app-theme";
-import { useGetMe } from "@/query/useGetMe.query";
-import { useGetPerformanceRanking } from "@/query/useGetRanking.query";
-import { createStyles } from "@/styles/ranking.style";
-
-type RankingType = "myLevel" | "allLevels";
+type RankingType = 'myLevel' | 'allLevels';
 
 const RankingScreen = () => {
   const colors = useAppTheme();
   const styles = createStyles(colors);
 
-  const [type, setType] = useState<RankingType>("myLevel");
+  const [type, setType] = useState<RankingType>('myLevel');
 
-  const { data: rankingData, refetch, isRefetching, isLoading } = useGetPerformanceRanking();
+  const {
+    data: rankingData,
+    refetch,
+    isRefetching,
+    isLoading,
+  } = useGetPerformanceRanking();
   const { data: currentUser } = useGetMe();
 
-  const isMyLevel = type === "myLevel";
+  const isMyLevel = type === 'myLevel';
 
   if (isLoading) {
     return (
@@ -43,12 +53,14 @@ const RankingScreen = () => {
     if (!currentUser) return rankingData;
 
     if (isMyLevel) {
-      return rankingData.filter(item => item.level === currentUser.student?.level);
+      return rankingData.filter(
+        (item) => item.level === currentUser.student?.level,
+      );
     }
 
     const top3 = rankingData.slice(0, 3);
     const rest = rankingData.slice(3);
-    const selfIndex = rest.findIndex(item => item.userId === currentUser.id);
+    const selfIndex = rest.findIndex((item) => item.userId === currentUser.id);
 
     if (selfIndex === -1) return rankingData;
 
@@ -60,33 +72,30 @@ const RankingScreen = () => {
     <SafeAreaView style={styles.container}>
       <FlatList
         data={displayedData}
-        keyExtractor={item => item.userId}
+        keyExtractor={(item) => item.userId}
         contentContainerStyle={styles.listContent}
-        refreshControl={<RefreshControl refreshing={isRefetching} onRefresh={refetch} />}
+        refreshControl={
+          <RefreshControl refreshing={isRefetching} onRefresh={refetch} />
+        }
         ListHeaderComponent={
           <BlurView intensity={40} tint="light" style={styles.stickyToggle}>
             <SegmentButton
               colors={colors}
               title="My Level"
               isActive={isMyLevel}
-              onPress={() => setType("myLevel")}
+              onPress={() => setType('myLevel')}
             />
             <SegmentButton
               colors={colors}
               title="All Levels"
               isActive={!isMyLevel}
-              onPress={() => setType("allLevels")}
+              onPress={() => setType('allLevels')}
             />
           </BlurView>
         }
         stickyHeaderIndices={[0]}
         renderItem={({ item, index }) => (
-          <RankingItem
-            item={item}
-            index={index}
-            type={type}
-            colors={colors}
-          />
+          <RankingItem item={item} index={index} type={type} colors={colors} />
         )}
       />
     </SafeAreaView>

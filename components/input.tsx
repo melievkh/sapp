@@ -1,7 +1,7 @@
-import { ThemedText } from '@/components/themed-text';
-import { useAppTheme } from '@/hooks/use-app-theme';
 import React, { useState } from 'react';
 import { TextInput, TouchableOpacity, View } from 'react-native';
+import { ThemedText } from '@/components/themed-text';
+import { useAppTheme } from '@/hooks/use-app-theme';
 import { IconSymbol } from './ui/icon-symbol';
 
 interface InputFieldProps {
@@ -43,7 +43,12 @@ const InputField: React.FC<InputFieldProps> = ({
   };
 
   return (
-    <View style={[style.container, { borderColor: focused ? theme.tint : theme.border }]}>
+    <View
+      style={[
+        style.container,
+        { borderColor: focused ? theme.tint : theme.border },
+      ]}
+    >
       <TextInput
         placeholder={placeholder}
         placeholderTextColor={theme.textSecondary}
@@ -59,9 +64,13 @@ const InputField: React.FC<InputFieldProps> = ({
 
       {secureTextEntry && (
         <TouchableOpacity onPress={() => setSecure(!secure)}>
-          <ThemedText style={style.toggle}>{secure ?
-            <IconSymbol size={28} name="eye.fill" color={theme.icon} /> :
-            <IconSymbol size={28} name="eye.slash.fill" color={theme.icon} />}</ThemedText>
+          <ThemedText style={style.toggle}>
+            {secure ? (
+              <IconSymbol size={28} name="eye.fill" color={theme.icon} />
+            ) : (
+              <IconSymbol size={28} name="eye.slash.fill" color={theme.icon} />
+            )}
+          </ThemedText>
         </TouchableOpacity>
       )}
     </View>
