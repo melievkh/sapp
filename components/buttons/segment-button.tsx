@@ -1,6 +1,6 @@
+import { ThemeColors } from '@/types/theme';
 import React from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
-import { ThemeColors } from '@/types/theme';
 import { ThemedText } from '../themed-text';
 
 type Props = {

@@ -7,7 +7,7 @@ export const createStyles = (colors: ThemeColors) =>
       flex: 1,
       padding: 16,
       paddingTop: 80,
-      backgroundColor: colors.backgroundSecondary,
+      backgroundColor: colors.background,
     },
     center: {
       flex: 1,

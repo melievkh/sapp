@@ -57,16 +57,16 @@ export const createStyles = (colors: ThemeColors) =>
       textAlign: 'center',
       fontSize: 14,
       marginBottom: 20,
-      color: colors.textSecondary,
+      color: colors.textSoft,
     },
     showPassword: {
       fontSize: 14,
-      color: colors.textSecondary,
+      color: colors.textSoft,
     },
     link: {
       textDecorationLine: 'underline',
       fontWeight: '500',
-      color: colors.textSecondary,
+      color: colors.textSoft,
     },
     button: {
       height: 50,
@@ -88,7 +88,7 @@ export const createStyles = (colors: ThemeColors) =>
     forgot: {
       textAlign: 'center',
       fontSize: 14,
-      color: colors.textSecondary,
+      color: colors.textSoft,
     },
     version: {
       textAlign: 'center',

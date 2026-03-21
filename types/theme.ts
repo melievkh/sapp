@@ -2,12 +2,12 @@ export type ThemeColors = {
   text: string;
   white: string;
   black: string;
-  textSecondary: string;
+  textSoft: string;
   background: string;
   backgroundSecondary: string;
   border: string;
   tint: string;
-  tintSecondary: string;
+  tintSoft: string;
   red1: string;
   red2: string;
   icon: string;

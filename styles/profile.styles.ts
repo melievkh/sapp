@@ -1,5 +1,5 @@
-import { StyleSheet } from 'react-native';
 import { ThemeColors } from '@/types/theme';
+import { StyleSheet } from 'react-native';
 
 export const createStyles = (colors: ThemeColors) =>
   StyleSheet.create({
@@ -7,6 +7,7 @@ export const createStyles = (colors: ThemeColors) =>
       flex: 1,
       padding: 16,
       paddingTop: 80,
+      backgroundColor: colors.background
     },
     profileContainer: {
       marginBottom: 20,
@@ -21,6 +22,8 @@ export const createStyles = (colors: ThemeColors) =>
     role: {
       fontSize: 12,
       marginTop: 4,
+      color: colors.tint,
+      fontWeight: 'bold',
     },
     loading: {
       flex: 1,
@@ -36,25 +39,6 @@ export const createStyles = (colors: ThemeColors) =>
       flexWrap: 'wrap',
       justifyContent: 'space-between',
       marginBottom: 20,
-    },
-    statItem: {
-      width: '48%',
-      backgroundColor: colors.background,
-      padding: 15,
-      borderRadius: 10,
-      marginBottom: 10,
-      shadowColor: colors.shadow,
-      shadowOpacity: 0.05,
-      shadowRadius: 5,
-      elevation: 2,
-    },
-    statTitle: {
-      fontSize: 14,
-    },
-    statValue: {
-      fontSize: 15,
-      fontWeight: 'bold',
-      marginTop: 5,
     },
     navContainer: {
       marginTop: 10,

@@ -3,6 +3,11 @@ import { ThemeColors } from '@/types/theme';
 
 export const createStyles = (colors: ThemeColors) =>
   StyleSheet.create({
+    container: {
+      padding: 16,
+      backgroundColor: colors.background,
+      paddingBottom: 60,
+    },
     center: { flex: 1, justifyContent: 'center', alignItems: 'center' },
     courseContainer: {
       marginBottom: 20,
@@ -23,7 +28,7 @@ export const createStyles = (colors: ThemeColors) =>
     },
     coursePrice: {
       fontSize: 16,
-      color: colors.textSecondary,
+      color: colors.textSoft,
       marginBottom: 10,
     },
     noMonths: { marginVertical: 8 },
@@ -37,7 +42,7 @@ export const createStyles = (colors: ThemeColors) =>
     },
     paid: { backgroundColor: colors.green2 },
     unpaid: { backgroundColor: colors.red2 },
-    monthText: { fontSize: 16, color: colors.textSecondary },
+    monthText: { fontSize: 16, color: colors.textSoft },
     paidText: { color: colors.green1, fontWeight: 'bold', fontSize: 14 },
     unpaidText: { color: colors.red1, fontWeight: 'bold', fontSize: 14 },
   });

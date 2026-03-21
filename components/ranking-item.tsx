@@ -76,7 +76,7 @@ const createStyles = (colors: ThemeColors) =>
       width: 28,
       textAlign: 'center',
       marginRight: 10,
-      color: colors.textSecondary,
+      color: colors.textSoft,
     },
     nameText: {
       fontWeight: '600',
@@ -84,7 +84,7 @@ const createStyles = (colors: ThemeColors) =>
     },
     levelText: {
       fontSize: 12,
-      color: colors.textSecondary,
+      color: colors.textSoft,
     },
     right: {
       alignItems: 'flex-end',
@@ -95,7 +95,7 @@ const createStyles = (colors: ThemeColors) =>
     },
     lessonsText: {
       fontSize: 12,
-      color: colors.textSecondary,
+      color: colors.textSoft,
     },
   });
 

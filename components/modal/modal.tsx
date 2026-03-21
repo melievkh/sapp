@@ -40,7 +40,7 @@ const CustomModal = ({
           <ThemedText style={styles.message}>{message}</ThemedText>
           <View style={styles.buttonRow}>
             <TouchableOpacity style={styles.cancelButton} onPress={onCancel}>
-              <ThemedText style={{ color: colors.textSecondary }}>
+              <ThemedText style={{ color: colors.textSoft }}>
                 {cancelText}
               </ThemedText>
             </TouchableOpacity>

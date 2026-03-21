@@ -1,3 +1,10 @@
+import SegmentButton from '@/components/buttons/segment-button';
+import RankingItem from '@/components/ranking-item';
+import { useAppTheme } from '@/hooks/use-app-theme';
+import { useGetMe } from '@/query/useGetMe.query';
+import { useGetPerformanceRanking } from '@/query/useGetRanking.query';
+import { createStyles } from '@/styles/ranking.style';
+import { BlurView } from 'expo-blur';
 import React, { useMemo, useState } from 'react';
 import {
   ActivityIndicator,
@@ -6,14 +13,7 @@ import {
   Text,
   View,
 } from 'react-native';
-import { BlurView } from 'expo-blur';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import SegmentButton from '@/components/buttons/segment-button';
-import RankingItem from '@/components/ranking-item';
-import { useAppTheme } from '@/hooks/use-app-theme';
-import { useGetMe } from '@/query/useGetMe.query';
-import { useGetPerformanceRanking } from '@/query/useGetRanking.query';
-import { createStyles } from '@/styles/ranking.style';
 
 type RankingType = 'myLevel' | 'allLevels';
 

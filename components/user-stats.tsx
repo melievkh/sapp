@@ -45,7 +45,7 @@ const UserStats = ({ user, myRanking, isRankingLoading }: Props) => {
     <View style={styles.container}>
       {stats.map((stat) => (
         <View key={stat.id} style={styles.card}>
-          <IconSymbol size={30} name={stat.icon} color={colors.primary} />
+          <IconSymbol size={30} name={stat.icon} color={colors.tint} />
 
           <View style={styles.textContainer}>
             <ThemedText style={styles.value}>{stat.value}</ThemedText>

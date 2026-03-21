@@ -51,7 +51,7 @@ const InputField: React.FC<InputFieldProps> = ({
     >
       <TextInput
         placeholder={placeholder}
-        placeholderTextColor={theme.textSecondary}
+        placeholderTextColor={theme.textSoft}
         value={value}
         onChangeText={handleTextChange}
         secureTextEntry={secure}

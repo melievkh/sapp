@@ -6,6 +6,7 @@ export const createStyles = (colors: ThemeColors) =>
     container: {
       flex: 1,
       padding: 16,
+      backgroundColor: colors.background,
     },
     center: {
       flex: 1,
@@ -38,7 +39,7 @@ export const createStyles = (colors: ThemeColors) =>
     },
     courseLevel: {
       fontSize: 14,
-      color: colors.textSecondary,
+      color: colors.textSoft,
       marginRight: 8,
     },
     coursePrice: {

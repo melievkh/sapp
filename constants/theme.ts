@@ -1,48 +1,48 @@
 import { Platform } from 'react-native';
 import { ThemeColors } from '@/types/theme';
 
-const tintColor = '#f3551c';
-const tintSecondaryColor = '#f96226';
-const primary = '#4173e5';
+const tintColor = '#ffa500';
+const tintSoft = '#ffae19';
+const primary = '#3B82F6';
 
 export const Colors: {
   light: ThemeColors;
   dark: ThemeColors;
 } = {
   light: {
-    text: '#11181C',
-    textSecondary: '#5f5f5f',
-    white: '#fff',
-    black: '#000',
-    background: '#fff',
-    backgroundSecondary: '#f6f6f6',
-    border: '#d7d7d7',
+    text: '#0F172A',
+    textSoft: '#64748B',
+    white: '#FFFFFF',
+    black: '#000000',
+    background: '#F8FAFC',
+    backgroundSecondary: '#FFFFFF',
+    border: '#E2E8F0',
     tint: tintColor,
-    tintSecondary: tintSecondaryColor,
-    red1: '#d63a49',
-    red2: '#f8e8e8',
-    icon: '#5f5f5f',
-    green1: '#155724',
-    green2: '#edfbe8',
-    shadow: '#000000',
+    tintSoft: tintSoft,
+    red1: '#EF4444',
+    red2: '#FEF2F2',
+    green1: '#22C55E',
+    green2: '#F0FDF4',
+    shadow: 'rgba(0,0,0,0.08)',
+    icon: '#64748B',
     primary: primary,
   },
   dark: {
-    text: '#ECEDEE',
-    textSecondary: '#8d8d8d',
+    text: '#F1F5F9',
+    textSoft: '#94A3B8',
     white: '#fff',
     black: '#000',
-    background: '#000000',
-    backgroundSecondary: '#0e0f12',
-    border: '#262626',
+    background: '#020617',
+    backgroundSecondary: '#0F172A',
+    border: '#1E293B',
     tint: tintColor,
-    tintSecondary: tintSecondaryColor,
-    red1: '#d63a49',
-    red2: '#322424',
-    icon: '#5f5f5f',
-    green1: '#206b31',
-    green2: '#293126',
-    shadow: '#656464',
+    tintSoft: tintSoft,
+    red1: '#F87171',
+    red2: '#372e2e',
+    green1: '#74eca0',
+    green2: '#273931',
+    shadow: 'rgba(0,0,0,0.6)',
+    icon: '#94A3B8',
     primary: primary,
   },
 };

@@ -1,10 +1,10 @@
-import React from 'react';
-import { Dimensions, StyleSheet, View } from 'react-native';
-import { BlurView } from 'expo-blur';
-import { Tabs } from 'expo-router';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 import { Colors } from '@/constants/theme';
 import { useColorScheme } from '@/hooks/use-color-scheme.web';
+import { BlurView } from 'expo-blur';
+import { Tabs } from 'expo-router';
+import React from 'react';
+import { Dimensions, StyleSheet, View } from 'react-native';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
@@ -18,6 +18,7 @@ const TabLayout = () => {
         headerShown: false,
         tabBarShowLabel: false,
         tabBarStyle: styles.tabBarStyle,
+        headerShadowVisible: false,
         tabBarBackground: () => (
           <BlurView
             intensity={30}

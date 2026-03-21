@@ -1,12 +1,12 @@
-import { StyleSheet } from 'react-native';
 import { ThemeColors } from '@/types/theme';
+import { StyleSheet } from 'react-native';
 
 export const createStyles = (colors: ThemeColors) =>
   StyleSheet.create({
     container: {
       flex: 1,
       padding: 16,
-      backgroundColor: colors.background,
+      backgroundColor: colors.backgroundSecondary,
     },
     center: {
       flex: 1,
@@ -28,7 +28,7 @@ export const createStyles = (colors: ThemeColors) =>
       marginVertical: 8,
       overflow: 'hidden',
       padding: 4,
-      backgroundColor: colors.backgroundSecondary,
+      backgroundColor: colors.background,
     },
     fixedToggle: {
       flexDirection: 'row',

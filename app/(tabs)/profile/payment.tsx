@@ -85,7 +85,10 @@ const PaymentScreen = () => {
         />
       )}
       keyExtractor={(course) => course.courseId}
-      contentContainerStyle={{ padding: 16, paddingTop: insets.top + 60 }}
+      contentContainerStyle={[
+        styles.container,
+        { paddingTop: insets.top + 60 },
+      ]}
     />
   );
 };
