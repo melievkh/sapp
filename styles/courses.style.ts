@@ -13,7 +13,7 @@ export const createStyles = (colors: ThemeColors) =>
       alignItems: 'center',
     },
     courseCard: {
-      backgroundColor: colors.background,
+      backgroundColor: colors.backgroundSecondary,
       padding: 18,
       borderRadius: 14,
       marginBottom: 16,

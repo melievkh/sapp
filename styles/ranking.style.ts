@@ -6,7 +6,7 @@ export const createStyles = (colors: ThemeColors) =>
     container: {
       flex: 1,
       padding: 16,
-      backgroundColor: colors.backgroundSecondary,
+      backgroundColor: colors.background,
     },
     center: {
       flex: 1,
@@ -28,7 +28,7 @@ export const createStyles = (colors: ThemeColors) =>
       marginVertical: 8,
       overflow: 'hidden',
       padding: 4,
-      backgroundColor: colors.background,
+      backgroundColor: colors.backgroundSecondary,
     },
     fixedToggle: {
       flexDirection: 'row',

@@ -7,9 +7,17 @@ export const createStyles = (colors: ThemeColors) =>
       flex: 1,
       padding: 16,
       paddingTop: 80,
+      backgroundColor: colors.backgroundSecondary,
+    },
+    center: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: colors.background,
     },
     headerWrapper: {
       flex: 1,
       flexDirection: 'row',
+      paddingBottom: 20,
     },
   });

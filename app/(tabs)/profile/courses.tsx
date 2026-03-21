@@ -5,7 +5,6 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { useRouter } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { ThemedText } from '@/components/themed-text';
 import { useAppTheme } from '@/hooks/use-app-theme';
@@ -16,12 +15,18 @@ const MyCoursesScreen = () => {
   const insets = useSafeAreaInsets();
   const colors = useAppTheme();
   const styles = createStyles(colors);
-  const router = useRouter();
 
   const { data: user, isLoading, error, refetch } = useGetMe();
   const courses = user?.student?.courses;
 
-  if (isLoading) return <ActivityIndicator size="large" color={colors.tint} />;
+  if (isLoading)
+    return (
+      <ActivityIndicator
+        size="large"
+        style={{ flex: 1, alignItems: 'center' }}
+      />
+    );
+
   if (error || !courses || courses.length === 0)
     return (
       <View style={styles.center}>

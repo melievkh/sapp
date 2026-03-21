@@ -36,7 +36,7 @@ const RankingScreen = () => {
   if (isLoading) {
     return (
       <View style={styles.center}>
-        <ActivityIndicator />
+        <ActivityIndicator size="large" />
       </View>
     );
   }

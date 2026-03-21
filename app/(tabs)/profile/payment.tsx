@@ -35,7 +35,13 @@ const PaymentScreen = () => {
   const { data, isLoading, isError, isRefetching, refetch } =
     useGetMyPaymentStatus();
 
-  if (isLoading) return <ActivityIndicator size="large" />;
+  if (isLoading)
+    return (
+      <ActivityIndicator
+        size="large"
+        style={{ flex: 1, alignItems: 'center' }}
+      />
+    );
   if (isError || !data || data.length === 0) return;
   <View style={styles.center}>
     <Text>No courses found</Text>

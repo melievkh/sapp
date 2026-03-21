@@ -66,7 +66,7 @@ export const createStyles = (colors: ThemeColors) =>
       alignItems: 'center',
       padding: 12,
       paddingHorizontal: 20,
-      backgroundColor: colors.background,
+      backgroundColor: colors.backgroundSecondary,
       marginBottom: 10,
       borderRadius: 40,
       shadowColor: colors.shadow,

@@ -6,7 +6,7 @@ export const createStyles = (colors: ThemeColors) =>
     center: { flex: 1, justifyContent: 'center', alignItems: 'center' },
     courseContainer: {
       marginBottom: 20,
-      backgroundColor: colors.background,
+      backgroundColor: colors.backgroundSecondary,
       padding: 16,
       borderRadius: 12,
       shadowColor: colors.shadow,

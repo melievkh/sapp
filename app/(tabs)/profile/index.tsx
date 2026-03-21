@@ -22,13 +22,9 @@ const ProfileScreen = () => {
 
   const [themeModalVisible, setThemeModalVisible] = useState<boolean>(false);
 
-  const { data: user, isLoading, error } = useGetMe();
+  const { data: user, isLoading } = useGetMe();
 
   if (isLoading) return <ActivityIndicator size="large" style={{ flex: 1 }} />;
-  if (error || !user)
-    return (
-      <ThemedText style={styles.loading}>Failed to load user data</ThemedText>
-    );
 
   const handleNavPress = (screen: any) => router.push(screen);
 
@@ -64,8 +60,10 @@ const ProfileScreen = () => {
       {/* Profile Header */}
       <View style={styles.profileContainer}>
         <View>
-          <ThemedText style={styles.name}>{user.fullname}</ThemedText>
-          <ThemedText style={styles.role}>{user.role}</ThemedText>
+          <ThemedText style={styles.name}>
+            {user ? user?.fullname : 'User'}
+          </ThemedText>
+          <ThemedText style={styles.role}>{user?.role}</ThemedText>
         </View>
 
         <TouchableOpacity onPress={confirmLogout}>

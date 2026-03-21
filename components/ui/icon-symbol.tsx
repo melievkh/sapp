@@ -28,6 +28,10 @@ const MAPPING = {
   'checkmark.circle.fill': 'check-circle',
   'bookmark.fill': 'badge',
   'trophy.circle.fill': 'emoji-events',
+  'bitcoinsign.circle.fill': 'crop-original',
+  'list.number': 'leaderboard',
+  'graduationcap.fill': 'school',
+  'chart.bar.fill': 'bar-chart',
 } as IconMapping;
 
 /**
