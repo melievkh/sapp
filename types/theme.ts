@@ -11,5 +11,6 @@ export type ThemeColors = {
   red2: string;
   icon: string;
   green1: string;
-  green2: string
+  green2: string;
+  shadow: string;
 };

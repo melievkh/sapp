@@ -1,5 +1,4 @@
 import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 import { useAppTheme } from '@/hooks/use-app-theme';
 import { User } from '@/types/api.type';
@@ -29,7 +28,7 @@ const ProfileHeader = (data: { user: User }) => {
     );
   };
   return (
-    <ThemedView style={[styles.container, { backgroundColor: colors.backgroundSecondary }]}>
+    <View style={styles.container}>
       <View>
         <ThemedText style={styles.name}>{data.user.fullname}</ThemedText>
         <ThemedText style={styles.role}>{data.user.role}</ThemedText>
@@ -38,7 +37,7 @@ const ProfileHeader = (data: { user: User }) => {
       <TouchableOpacity onPress={confirmLogout}>
         <IconSymbol size={28} name="rectangle.portrait.and.arrow.right" color={colors.icon} />
       </TouchableOpacity>
-    </ThemedView>
+    </View>
   );
 }
 

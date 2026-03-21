@@ -1,11 +1,11 @@
 import { ThemeColors } from "@/types/theme";
 import { StyleSheet } from "react-native";
 
-export const createStyles = (theme: ThemeColors) => StyleSheet.create({
+export const createStyles = (colors: ThemeColors) => StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
-    backgroundColor: theme.backgroundSecondary
+    padding: 16,
+    paddingTop: 80
   },
   loading: {
     flex: 1,
@@ -24,11 +24,11 @@ export const createStyles = (theme: ThemeColors) => StyleSheet.create({
   },
   statItem: {
     width: '48%',
-    backgroundColor: theme.background,
+    backgroundColor: colors.background,
     padding: 15,
     borderRadius: 10,
     marginBottom: 10,
-    shadowColor: theme.black,
+    shadowColor: colors.shadow,
     shadowOpacity: 0.05,
     shadowRadius: 5,
     elevation: 2,
@@ -45,16 +45,21 @@ export const createStyles = (theme: ThemeColors) => StyleSheet.create({
     marginTop: 10
   },
   navItem: {
-    padding: 15,
-    backgroundColor: theme.background,
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: 12,
+    paddingHorizontal: 20,
+    backgroundColor: colors.background,
     marginBottom: 10,
-    borderRadius: 20,
-    shadowColor: theme.black,
+    borderRadius: 40,
+    shadowColor: colors.shadow,
     shadowOpacity: 0.05,
     shadowRadius: 5,
     elevation: 2,
   },
   navText: {
-    fontSize: 16,
+    fontSize: 14,
   },
 });

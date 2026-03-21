@@ -1,8 +1,7 @@
 import { Colors } from "@/constants/theme";
-import { useColorScheme } from "@/hooks/use-color-scheme";
-import { ThemeColors } from "@/types/theme";
+import { useThemeContext } from "@/context/theme.context";
 
-export const useAppTheme = (): ThemeColors => {
-  const theme = useColorScheme() ?? "light";
+export const useAppTheme = () => {
+  const { theme } = useThemeContext();
   return Colors[theme];
-}
+};

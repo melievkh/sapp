@@ -36,6 +36,7 @@ export const createStyles = (colors: ThemeColors) => StyleSheet.create({
   usernameInput: {
     flex: 1,
     fontSize: 14,
+    color: colors.text
   },
   passwordContainer: {
     flexDirection: "row",
@@ -49,6 +50,7 @@ export const createStyles = (colors: ThemeColors) => StyleSheet.create({
   passwordInput: {
     flex: 1,
     fontSize: 14,
+    color: colors.text
   },
   policy: {
     textAlign: "center",

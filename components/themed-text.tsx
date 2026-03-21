@@ -1,12 +1,12 @@
+import { useAppTheme } from '@/hooks/use-app-theme';
 import { StyleSheet, Text, type TextProps } from 'react-native';
-import { useThemeColor } from '../hooks/use-theme-color';
-
 
 export type ThemedTextProps = TextProps & {
   lightColor?: string;
   darkColor?: string;
   type?: 'default' | 'title' | 'defaultSemiBold' | 'subtitle' | 'link';
 };
+
 export const ThemedText = ({
   style,
   lightColor,
@@ -14,23 +14,25 @@ export const ThemedText = ({
   type = 'default',
   ...rest
 }: ThemedTextProps) => {
-  const color = useThemeColor({ light: lightColor, dark: darkColor }, 'text');
+  const colors = useAppTheme();
+
+  const color = lightColor || darkColor || colors.text;
 
   return (
     <Text
       style={[
         { color },
-        type === 'default' ? styles.default : undefined,
-        type === 'title' ? styles.title : undefined,
-        type === 'defaultSemiBold' ? styles.defaultSemiBold : undefined,
-        type === 'subtitle' ? styles.subtitle : undefined,
-        type === 'link' ? styles.link : undefined,
+        type === 'default' && styles.default,
+        type === 'title' && styles.title,
+        type === 'defaultSemiBold' && styles.defaultSemiBold,
+        type === 'subtitle' && styles.subtitle,
+        type === 'link' && styles.link,
         style,
       ]}
       {...rest}
     />
   );
-}
+};
 
 const styles = StyleSheet.create({
   default: {

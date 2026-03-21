@@ -10,7 +10,6 @@ import {
   ActivityIndicator,
   KeyboardAvoidingView,
   Platform,
-  StatusBar,
   TouchableOpacity,
   View
 } from 'react-native';
@@ -42,7 +41,6 @@ const LoginScreen = () => {
     >
       <View style={{ flexGrow: 1 }}>
         <ThemedView style={styles.container}>
-          <StatusBar barStyle="dark-content" />
 
           <View style={styles.header}>
             {/* Header content */}

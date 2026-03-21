@@ -5,6 +5,7 @@ import { createStyles } from "@/styles/payment.style";
 import { getMonthPaid } from "@/utils/payment.utils";
 import React from "react";
 import { ActivityIndicator, FlatList, Text, View } from "react-native";
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export type Month = {
   month: number;
@@ -18,6 +19,7 @@ const monthNames = [
 ];
 
 const PaymentScreen = () => {
+  const insets = useSafeAreaInsets();
   const colors = useAppTheme()
   const styles = createStyles(colors)
   const { data, isLoading, isError, isRefetching, refetch } = useGetMyPaymentStatus();
@@ -55,9 +57,9 @@ const PaymentScreen = () => {
           renderMonth={renderMonth}
           colors={colors} />)}
       keyExtractor={(course) => course.courseId}
-      contentContainerStyle={{ padding: 16 }}
+      contentContainerStyle={{ padding: 16, paddingTop: insets.top + 60, }}
     />
-  );
+  )
 };
 
 export default PaymentScreen;
