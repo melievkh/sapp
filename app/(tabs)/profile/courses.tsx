@@ -8,7 +8,7 @@ import {
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { ThemedText } from '@/components/themed-text';
 import { useAppTheme } from '@/hooks/use-app-theme';
-import { useGetMe } from '@/query/useGetMe.query';
+import { useGetMe } from '@/query/useGetUser.query';
 import { createStyles } from '@/styles/courses.style';
 
 const MyCoursesScreen = () => {

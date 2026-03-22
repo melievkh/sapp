@@ -13,7 +13,7 @@ import ThemeModal from '@/components/modal/theme/theme-modal';
 import { ThemedText } from '@/components/themed-text';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 import { useAppTheme } from '@/hooks/use-app-theme';
-import { useGetMe } from '@/query/useGetMe.query';
+import { useGetMe } from '@/query/useGetUser.query';
 import { createStyles } from '@/styles/profile.styles';
 
 const ProfileScreen = () => {

@@ -8,8 +8,8 @@ import ErrorState from '@/components/error-state';
 import { ThemedText } from '@/components/themed-text';
 import UserStats from '@/components/user-stats';
 import { useAppTheme } from '@/hooks/use-app-theme';
-import { useGetMe } from '@/query/useGetMe.query';
 import { useGetMyPerformance } from '@/query/useGetRanking.query';
+import { useGetMe } from '@/query/useGetUser.query';
 import { createStyles } from '@/styles/home.style';
 
 const HomeScreen = () => {

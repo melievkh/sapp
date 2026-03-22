@@ -129,3 +129,15 @@ export interface MyPaymentStatusType {
     paid: boolean;
   }[];
 }
+
+export type GiftType = {
+  id: string;
+  code: string;
+  discount: number;
+  title?: string;
+  studentId: string;
+  paymentId?: string;
+  used: boolean;
+  appliedAt?: Date;
+  createdAt: Date;
+};

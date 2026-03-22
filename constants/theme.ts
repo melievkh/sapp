@@ -1,9 +1,9 @@
 import { Platform } from 'react-native';
 import { ThemeColors } from '@/types/theme';
 
-const tintColor = '#ffa500';
-const tintSoft = '#ffae19';
-const primary = '#3B82F6';
+const tintColor = '#3B82F6';
+const tintSoft = '#3B82F6';
+const primary = '#ffa500';
 
 export const Colors: {
   light: ThemeColors;

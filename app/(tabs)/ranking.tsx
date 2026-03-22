@@ -11,8 +11,8 @@ import ErrorState from '@/components/error-state';
 import RankingItem from '@/components/ranking-item';
 import { ThemedText } from '@/components/themed-text';
 import { useAppTheme } from '@/hooks/use-app-theme';
-import { useGetMe } from '@/query/useGetMe.query';
 import { useGetPerformanceRanking } from '@/query/useGetRanking.query';
+import { useGetMe } from '@/query/useGetUser.query';
 import { createStyles } from '@/styles/ranking.style';
 
 type RankingType = 'myLevel' | 'allLevels';
