@@ -5,12 +5,12 @@ import RenderCourseItem from '@/components/course-item';
 import { useAppTheme } from '@/hooks/use-app-theme';
 import { useGetMyPaymentStatus } from '@/query/useGetPayment.query';
 import { createStyles } from '@/styles/payment.style';
-import { getMonthPaid } from '@/utils/payment.utils';
 
 export type Month = {
   month: number;
   year: number;
   paid: boolean;
+  amount?: number;
 };
 
 const monthNames = [
@@ -47,21 +47,16 @@ const PaymentScreen = () => {
     <Text>No courses found</Text>
   </View>;
 
-  const renderMonth = ({
-    item,
-    monthlyPrice,
-  }: {
-    item: Month;
-    monthlyPrice: string | number;
-  }) => {
-    const paidAmount = getMonthPaid(monthlyPrice, item);
-
+  const renderMonth = (month: Month) => {
+    const paidAmount = month.amount ?? 0;
     return (
-      <View style={[styles.monthItem, item.paid ? styles.paid : styles.unpaid]}>
+      <View
+        style={[styles.monthItem, month.paid ? styles.paid : styles.unpaid]}
+      >
         <Text style={styles.monthText}>
-          {monthNames[item.month - 1]} {item.year}
+          {monthNames[month.month - 1]} {month.year}
         </Text>
-        {item.paid ? (
+        {month.paid ? (
           <Text style={styles.paidText}>
             ✅ {paidAmount.toLocaleString()} UZS
           </Text>

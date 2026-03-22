@@ -1,19 +1,19 @@
-import SegmentButton from '@/components/buttons/segment-button';
-import RankingItem from '@/components/ranking-item';
-import { useAppTheme } from '@/hooks/use-app-theme';
-import { useGetMe } from '@/query/useGetMe.query';
-import { useGetPerformanceRanking } from '@/query/useGetRanking.query';
-import { createStyles } from '@/styles/ranking.style';
-import { BlurView } from 'expo-blur';
 import React, { useMemo, useState } from 'react';
 import {
   ActivityIndicator,
   FlatList,
   RefreshControl,
-  Text,
   View,
 } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { BlurView } from 'expo-blur';
+import SegmentButton from '@/components/buttons/segment-button';
+import ErrorState from '@/components/error-state';
+import RankingItem from '@/components/ranking-item';
+import { ThemedText } from '@/components/themed-text';
+import { useAppTheme } from '@/hooks/use-app-theme';
+import { useGetMe } from '@/query/useGetMe.query';
+import { useGetPerformanceRanking } from '@/query/useGetRanking.query';
+import { createStyles } from '@/styles/ranking.style';
 
 type RankingType = 'myLevel' | 'allLevels';
 
@@ -28,28 +28,15 @@ const RankingScreen = () => {
     refetch,
     isRefetching,
     isLoading,
+    error,
   } = useGetPerformanceRanking();
-  const { data: currentUser } = useGetMe();
+  const { data: currentUser, isLoading: isUserLoading } = useGetMe();
 
   const isMyLevel = type === 'myLevel';
 
-  if (isLoading) {
-    return (
-      <View style={styles.center}>
-        <ActivityIndicator size="large" />
-      </View>
-    );
-  }
-
-  if (!rankingData?.length) {
-    return (
-      <View style={styles.center}>
-        <Text>No ranking yet</Text>
-      </View>
-    );
-  }
-
   const displayedData = useMemo(() => {
+    if (!rankingData) return [];
+
     if (!currentUser) return rankingData;
 
     if (isMyLevel) {
@@ -64,21 +51,42 @@ const RankingScreen = () => {
 
     if (selfIndex === -1) return rankingData;
 
-    const self = rest.splice(selfIndex, 1)[0];
-    return [...top3, self, ...rest];
+    const self = rest[selfIndex];
+    const newRest = rest.filter((_, i) => i !== selfIndex);
+
+    return [...top3, self, ...newRest];
   }, [rankingData, currentUser, isMyLevel]);
 
+  if (isLoading || isUserLoading) {
+    return (
+      <View style={styles.center}>
+        <ActivityIndicator size="large" />
+      </View>
+    );
+  }
+
+  if (error) {
+    return <ErrorState onRetry={refetch} />;
+  }
+
+  if (!rankingData || rankingData.length === 0) {
+    return (
+      <View style={styles.center}>
+        <ThemedText>No ranking yet</ThemedText>
+      </View>
+    );
+  }
   return (
-    <SafeAreaView style={styles.container}>
-      <FlatList
-        data={displayedData}
-        keyExtractor={(item) => item.userId}
-        contentContainerStyle={styles.listContent}
-        refreshControl={
-          <RefreshControl refreshing={isRefetching} onRefresh={refetch} />
-        }
-        ListHeaderComponent={
-          <BlurView intensity={40} tint="light" style={styles.stickyToggle}>
+    <FlatList
+      data={displayedData}
+      keyExtractor={(item) => item.userId.toString()}
+      contentContainerStyle={styles.listContent}
+      refreshControl={
+        <RefreshControl refreshing={isRefetching} onRefresh={refetch} />
+      }
+      ListHeaderComponent={
+        <View style={styles.shadowWrapper}>
+          <BlurView intensity={40} style={styles.stickyToggle}>
             <SegmentButton
               colors={colors}
               title="My Level"
@@ -92,13 +100,13 @@ const RankingScreen = () => {
               onPress={() => setType('allLevels')}
             />
           </BlurView>
-        }
-        stickyHeaderIndices={[0]}
-        renderItem={({ item, index }) => (
-          <RankingItem item={item} index={index} type={type} colors={colors} />
-        )}
-      />
-    </SafeAreaView>
+        </View>
+      }
+      stickyHeaderIndices={[0]}
+      renderItem={({ item, index }) => (
+        <RankingItem item={item} index={index} type={type} colors={colors} />
+      )}
+    />
   );
 };
 

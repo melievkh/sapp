@@ -32,6 +32,7 @@ const MAPPING = {
   'list.number': 'leaderboard',
   'graduationcap.fill': 'school',
   'chart.bar.fill': 'bar-chart',
+  'gift.fill': 'gif',
 } as IconMapping;
 
 /**

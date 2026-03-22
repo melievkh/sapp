@@ -8,16 +8,18 @@ export type Month = {
   month: number;
   year: number;
   paid: boolean;
+  amount?: number;
 };
 
 type Props = {
   colors: ThemeColors;
   item: MyPaymentStatusType;
-  renderMonth: (params: { item: Month; monthlyPrice: string }) => JSX.Element;
+  renderMonth: (month: Month) => JSX.Element; // shu yerda faqat Month
   isRefetching: boolean;
   refetch: () => void;
 };
 
+// course-item.tsx
 const RenderCourseItem = (props: Props) => {
   const { item, colors, refetch, renderMonth, isRefetching } = props;
   const styles = createStyles(colors);
@@ -35,7 +37,7 @@ const RenderCourseItem = (props: Props) => {
       ) : (
         <FlatList
           data={item.months}
-          renderItem={({ item }) => renderMonth({ item, monthlyPrice })}
+          renderItem={({ item }) => renderMonth(item)}
           keyExtractor={(month) => `${month.year}-${month.month}`}
           contentContainerStyle={{ paddingBottom: 12 }}
           refreshControl={

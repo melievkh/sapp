@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import { useRouter } from 'expo-router';
 import * as SecureStore from 'expo-secure-store';
+import ErrorState from '@/components/error-state';
 import ThemeModal from '@/components/modal/theme/theme-modal';
 import { ThemedText } from '@/components/themed-text';
 import { IconSymbol } from '@/components/ui/icon-symbol';
@@ -22,9 +23,10 @@ const ProfileScreen = () => {
 
   const [themeModalVisible, setThemeModalVisible] = useState<boolean>(false);
 
-  const { data: user, isLoading } = useGetMe();
+  const { data: user, isLoading, error, refetch } = useGetMe();
 
-  if (isLoading) return <ActivityIndicator size="large" style={{ flex: 1 }} />;
+  if (isLoading) return <ActivityIndicator size="large" />;
+  if (error) return <ErrorState onRetry={refetch} />;
 
   const handleNavPress = (screen: any) => router.push(screen);
 

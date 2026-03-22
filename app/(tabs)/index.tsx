@@ -4,6 +4,7 @@ import {
   ScrollView,
   View,
 } from 'react-native';
+import ErrorState from '@/components/error-state';
 import { ThemedText } from '@/components/themed-text';
 import UserStats from '@/components/user-stats';
 import { useAppTheme } from '@/hooks/use-app-theme';
@@ -15,12 +16,13 @@ const HomeScreen = () => {
   const colors = useAppTheme();
   const styles = createStyles(colors);
 
-  const { data: user, isLoading: isUserLoading } = useGetMe();
+  const { data: user, isLoading: isUserLoading, error: userError } = useGetMe();
   const {
     data: myRanking,
     isLoading,
     isRefetching,
     refetch,
+    error,
   } = useGetMyPerformance();
 
   if (isUserLoading || isLoading) {
@@ -29,6 +31,10 @@ const HomeScreen = () => {
         <ActivityIndicator size="large" />
       </View>
     );
+  }
+
+  if (error || userError) {
+    return <ErrorState onRetry={refetch} />;
   }
 
   if (!user) return null;
