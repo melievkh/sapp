@@ -26,13 +26,13 @@ const MAPPING = {
   'eye.slash.fill': 'visibility-off',
   'rectangle.portrait.and.arrow.right': 'logout',
   'checkmark.circle.fill': 'check-circle',
-  'bookmark.fill': 'badge',
+  'bookmark.fill': 'bookmark',
   'trophy.circle.fill': 'emoji-events',
-  'bitcoinsign.circle.fill': 'crop-original',
-  'list.number': 'leaderboard',
+  'bitcoinsign.circle.fill': 'paid',
+  'list.number': 'format-list-numbered',
   'graduationcap.fill': 'school',
   'chart.bar.fill': 'bar-chart',
-  'gift.fill': 'gif',
+  'gift.fill': 'card-giftcard',
 } as IconMapping;
 
 /**

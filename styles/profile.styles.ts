@@ -1,5 +1,5 @@
-import { ThemeColors } from '@/types/theme';
 import { StyleSheet } from 'react-native';
+import { ThemeColors } from '@/types/theme';
 
 export const createStyles = (colors: ThemeColors) =>
   StyleSheet.create({
@@ -7,7 +7,7 @@ export const createStyles = (colors: ThemeColors) =>
       flex: 1,
       padding: 16,
       paddingTop: 80,
-      backgroundColor: colors.background
+      backgroundColor: colors.background,
     },
     profileContainer: {
       marginBottom: 20,

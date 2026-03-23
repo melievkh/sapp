@@ -27,9 +27,11 @@ const GiftCard = ({ item }: { item: GiftType }) => {
             {item.title || 'Discount Voucher'}
           </ThemedText>
 
-          <ThemedText style={styles.discount}>
-            {item.discount.toLocaleString()} so'm
-          </ThemedText>
+          {item.discount && (
+            <ThemedText style={styles.discount}>
+              {item.discount.toLocaleString()} so'm
+            </ThemedText>
+          )}
         </View>
 
         <View style={styles.dateWrapper}>

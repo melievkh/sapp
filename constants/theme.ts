@@ -2,7 +2,7 @@ import { Platform } from 'react-native';
 import { ThemeColors } from '@/types/theme';
 
 const tintColor = '#3B82F6';
-const tintSoft = '#3B82F6';
+const tintSoft = '#478dfd';
 const primary = '#ffa500';
 
 export const Colors: {
@@ -14,7 +14,7 @@ export const Colors: {
     textSoft: '#64748B',
     white: '#FFFFFF',
     black: '#000000',
-    background: '#F8FAFC',
+    background: '#f9f9f9',
     backgroundSecondary: '#FFFFFF',
     border: '#E2E8F0',
     tint: tintColor,
@@ -33,7 +33,7 @@ export const Colors: {
     white: '#fff',
     black: '#000',
     background: '#060607',
-    backgroundSecondary: '#1b1b1b',
+    backgroundSecondary: '#0f0f0f',
     border: '#1E293B',
     tint: tintColor,
     tintSoft: tintSoft,

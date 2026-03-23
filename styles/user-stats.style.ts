@@ -62,4 +62,13 @@ export const createStyles = (colors: ThemeColors) =>
       fontWeight: '600',
       color: colors.textSoft,
     },
+    avgValueText: {
+      fontSize: 12,
+      marginTop: 4,
+      fontWeight: '600',
+      color: colors.white,
+      paddingHorizontal: 10,
+      borderRadius: 14,
+      backgroundColor: colors.tintSoft,
+    },
   });

@@ -66,15 +66,13 @@ const UserStats = ({ user, myRanking, isRankingLoading }: Props) => {
           }}
         >
           <View style={styles.avgValueCard}>
-            <ThemedText style={[styles.title, { color: colors.white }]}>
+            <ThemedText style={styles.avgValueText}>
               {'>'}90% - Pass with no exam
             </ThemedText>
           </View>
 
           <View style={styles.avgValueCard}>
-            <ThemedText style={[styles.title, { color: colors.white }]}>
-              {'<'}60% - Fail
-            </ThemedText>
+            <ThemedText style={styles.avgValueText}>{'<'}60% - Fail</ThemedText>
           </View>
         </View>
       </TouchableOpacity>

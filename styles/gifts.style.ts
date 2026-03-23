@@ -38,13 +38,13 @@ export const createStyles = (colors: ThemeColors) =>
     // 🎁 Gift Card
     card: {
       flexDirection: 'row',
-      backgroundColor: colors.backgroundSecondary,
+      backgroundColor: colors.background,
       marginHorizontal: 16,
       marginBottom: 14,
       padding: 16,
       borderRadius: 20,
 
-      shadowColor: '#000',
+      shadowColor: colors.shadow,
       shadowOpacity: 0.08,
       shadowOffset: { width: 0, height: 6 },
       shadowRadius: 12,

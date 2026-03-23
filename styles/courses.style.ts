@@ -6,7 +6,6 @@ export const createStyles = (colors: ThemeColors) =>
     container: {
       flex: 1,
       padding: 16,
-      backgroundColor: colors.background,
     },
     center: {
       flex: 1,
